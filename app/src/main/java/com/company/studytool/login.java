@@ -17,9 +17,16 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.firebase.client.Firebase;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class login extends AppCompatActivity {
 
@@ -111,4 +118,64 @@ public class login extends AppCompatActivity {
             }
         });
     }
+
+    public void addQuiz(String courseName,String QuizTitle,Question question){
+
+
+        String url = "https://mystudytool-7b85e-default-rtdb.firebaseio.com/Courses/Quizz.json";
+
+        StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>(){
+            @Override
+            public void onResponse(String s) {
+                Firebase reference = new Firebase("https://mystudytool-7b85e-default-rtdb.firebaseio.com/Courses/Quizz");
+
+                switch (s) {
+                    case "null":
+                        reference.child(courseName).child(QuizTitle).setValue(question);
+                        Toast.makeText(login.this, "done", Toast.LENGTH_LONG).show();
+                        break;
+                    default:
+                        try {
+                            JSONObject obj = new JSONObject(s);
+
+                            if (!obj.has(String.valueOf(question))) {
+                                reference.child(courseName).child(QuizTitle).setValue(question);
+                                Toast.makeText(login.this, "registration successful", Toast.LENGTH_LONG).show();
+
+                            } else {
+                                Toast.makeText(login.this, "Quiz already exists", Toast.LENGTH_LONG).show();
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                }
+                pd.dismiss();
+            }
+
+        },new Response.ErrorListener(){
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                System.out.println("" + volleyError );
+                pd.dismiss();
+            }
+        });
+
+        RequestQueue rQueue = Volley.newRequestQueue(login.this);
+        rQueue.add(request);
+    }
+    public void questionsToObject() throws IOException {
+
+        FileInputStream fs= new FileInputStream("someFile.txt");
+        BufferedReader br = new BufferedReader(new InputStreamReader(fs));
+
+        for(int i = 0; i < 1; ++i)
+            br.readLine();
+        String lineIWant = br.readLine();
+
+    }
 }
+
+
+
