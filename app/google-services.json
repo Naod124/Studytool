@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "55158731067",
+    "project_id": "studytool-304217",
+    "storage_bucket": "studytool-304217.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:55158731067:android:fbd1d1ec0dd483298dc71e",
+        "android_client_info": {
+          "package_name": "com.company.studytool"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "55158731067-3m1fstd1gr99c8spfkuriaj2ttb066mh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkgKNj3NbM2CqHZQg82E8E-Mqa3ZfdLB4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "55158731067-3m1fstd1gr99c8spfkuriaj2ttb066mh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
