@@ -61,7 +61,7 @@ public class login extends AppCompatActivity {
                     password.setError("can't be blank");
                 }
                 else{
-                    url = "https://studytool-304217-default-rtdb.firebaseio.com/Users.json";
+                    url = getString(R.string.Db);
                     pd = new ProgressDialog(login.this);
                     pd.setMessage("Loading...");
                     pd.show();

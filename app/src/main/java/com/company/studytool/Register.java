@@ -83,12 +83,12 @@ public class Register extends AppCompatActivity {
                     pd.setMessage("Loading...");
                     pd.show();
 
-                    String url = "https://studytool-304217-default-rtdb.firebaseio.com/Users.json";
+                    String url = "https://mystudytool-7b85e-default-rtdb.firebaseio.com/Users.json";
 
                     StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>(){
                         @Override
                         public void onResponse(String s) {
-                            Firebase reference = new Firebase("https://studytool-304217-default-rtdb.firebaseio.com/Users");
+                            Firebase reference = new Firebase("https://mystudytool-7b85e-default-rtdb.firebaseio.com/Users");
 
                             switch (s) {
                                 case "null":

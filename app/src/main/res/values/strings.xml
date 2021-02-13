@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Studytool</string>
+    <string name="Db">https://mystudytool-7b85e-default-rtdb.firebaseio.com/Users.json</string>
 </resources>
