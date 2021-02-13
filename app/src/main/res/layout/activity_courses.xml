@@ -16,20 +16,16 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:gravity="center"
-        android:text="Menu"
+        android:text="Courses"
         android:textSize="30dp" />
     <!--    -->
 
     <Button
-        android:id="@+id/coursesList"
+        android:id="@+id/courses"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-        android:text="Courses"
-
-
-
-         />
+        android:text="Algorithms and Data Structures" />
 
 
     <Button
@@ -37,22 +33,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-        android:text="Analysis" />
+        android:text="Operating Systems" />
 
     <Button
         android:id="@+id/privatechat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-        android:text="Private chat" />
+        android:text="Data Communication" />
 
 
-    <Button
-        android:id="@+id/groupchat"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:text="Group chat" />
 
 
 </LinearLayout>

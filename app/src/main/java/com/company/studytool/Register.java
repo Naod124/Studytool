@@ -1,16 +1,22 @@
 package com.company.studytool;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.transition.Scene;
+import android.transition.TransitionInflater;
+import android.transition.TransitionManager;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import android.transition.Transition;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -24,16 +30,24 @@ import org.json.JSONObject;
 
 public class Register extends AppCompatActivity {
 
+
+
+
+
     EditText username, password, email;
 
     Button registerButton;
     String user,pass,Email;
     TextView login;
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+
+
 
         username = (EditText)findViewById(R.id.username);
         password = (EditText)findViewById(R.id.password);
@@ -132,4 +146,7 @@ public class Register extends AppCompatActivity {
             }
         });
     }
+
+
+
 }
