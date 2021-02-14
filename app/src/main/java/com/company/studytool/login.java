@@ -59,11 +59,7 @@ public class login extends AppCompatActivity {
             question.setRight("Counting the number of key operations");
 
 
-
-
-
-
-                addQuiz(" Algorithms and Data Structures", "Algorithm analysis", question);
+                addQuiz(" Algorithms and Data Structures", "Algorithm analysis", question,2);
 
 
             user = username.getText().toString();
@@ -116,7 +112,7 @@ public class login extends AppCompatActivity {
     }
 
 
-    public void addQuiz(String courseName, String QuizTitle, Question question) {
+    public void addQuiz(String courseName, String QuizTitle, Question question,int number) {
         Firebase.setAndroidContext(getApplicationContext());
         final ProgressDialog pd = new ProgressDialog(login.this);
         pd.setMessage("Loading...");
@@ -132,7 +128,7 @@ public class login extends AppCompatActivity {
 
                 switch (s) {
                     case "null":
-                        reference.child(courseName).child(QuizTitle).child(question.mainQuestion).setValue(question);
+                        reference.child(courseName).child(QuizTitle).child(String.valueOf(number)).setValue(question);
 
                         Toast.makeText(login.this, "done", Toast.LENGTH_LONG).show();
                         break;
@@ -141,7 +137,7 @@ public class login extends AppCompatActivity {
                             JSONObject obj = new JSONObject(s);
 
                             if (!obj.has(String.valueOf(question))) {
-                                reference.child(courseName).child(QuizTitle).setValue(question);
+                                reference.child(courseName).child(QuizTitle).child(String.valueOf(number)).setValue(question);
                                 Toast.makeText(login.this, "registration successful", Toast.LENGTH_LONG).show();
 
                             } else {
