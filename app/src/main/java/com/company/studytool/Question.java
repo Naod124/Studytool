@@ -1,5 +1,4 @@
 package com.company.studytool;
-
 public class Question {
     String mainQuestion;
     String alternative1;
