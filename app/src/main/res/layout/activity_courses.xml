@@ -21,11 +21,13 @@
     <!--    -->
 
     <Button
-        android:id="@+id/courses"
+        android:id="@+id/moveToQuiz"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-        android:text="Algorithms and Data Structures" />
+        android:text="Algorithms and Data Structures"
+
+        />
 
 
     <Button
