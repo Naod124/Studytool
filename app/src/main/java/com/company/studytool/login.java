@@ -3,6 +3,7 @@ package com.company.studytool;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Build;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -18,11 +20,13 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.firebase.client.Firebase;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
@@ -35,7 +39,6 @@ public class login extends AppCompatActivity {
     RequestQueue rQueue;
     ProgressDialog pd;
     String url;
-    String textFile = "com.company.studytool.Q.text";
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -51,15 +54,17 @@ public class login extends AppCompatActivity {
         register.setOnClickListener(v -> startActivity(new Intent(login.this, Register.class)));
 
         loginButton.setOnClickListener(v -> {
-            Question question = new Question();
-            question.setMainQuestion("The time factor when determining the efficiency of algorithm is measured by");
-            question.setAlternative1("Counting microseconds");
-            question.setAlternative2("Counting the number of statements");
-            question.setAlternative3("Counting the kilobytes of algorithm");
-            question.setRight("Counting the number of key operations");
 
 
-                addQuiz(" Algorithms and Data Structures", "Algorithm analysis", question,2);
+                Question question = new Question();
+//                question.setMainQuestion(getLine(1));
+//                question.setAlternative1(getLine(2));
+//                question.setAlternative2(getLine(3));
+//                question.setAlternative3(getLine(4));
+//                question.setRight(getLine(5));
+                addQuiz(" Algorithms and Data Structures", "Algorithm analysis", question, 2);
+
+
 
 
             user = username.getText().toString();
@@ -112,7 +117,7 @@ public class login extends AppCompatActivity {
     }
 
 
-    public void addQuiz(String courseName, String QuizTitle, Question question,int number) {
+    public void addQuiz(String courseName, String QuizTitle, Question question, int number) {
         Firebase.setAndroidContext(getApplicationContext());
         final ProgressDialog pd = new ProgressDialog(login.this);
         pd.setMessage("Loading...");
@@ -164,7 +169,22 @@ public class login extends AppCompatActivity {
         rQueue.add(request);
     }
 
-
+//    public String getLine(int lineNumber) throws IOException {
+//
+//        try {
+//             str = Files.lines(Paths.get(filename)).skip(lineNumber - 1).findFirst().get();
+//            System.out.println("Content at " + lineNumber + " Number:- " + str);
+//             return str;
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//        Toast.makeText(login.this, str, Toast.LENGTH_LONG).show();
+//
+//
+//        return null;
+//    }
 
 
 }

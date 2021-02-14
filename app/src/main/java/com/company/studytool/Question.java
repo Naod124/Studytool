@@ -56,4 +56,15 @@ public class Question {
     public void setRight(String right) {
         this.right = right;
     }
+
+    @Override
+    public String toString() {
+        return "Question{" +
+                "mainQuestion='" + mainQuestion + '\'' +
+                ", alternative1='" + alternative1 + '\'' +
+                ", alternative2='" + alternative2 + '\'' +
+                ", alternative3='" + alternative3 + '\'' +
+                ", right='" + right + '\'' +
+                '}';
+    }
 }
