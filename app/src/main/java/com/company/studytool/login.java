@@ -1,11 +1,13 @@
 package com.company.studytool;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -18,6 +20,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.firebase.client.Firebase;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -53,7 +61,6 @@ This will add quiz to DB
             }
 
 */
-
 
             user = username.getText().toString();
             pass = password.getText().toString();
@@ -203,6 +210,8 @@ This will add quiz to DB
         RequestQueue rQueue = Volley.newRequestQueue(login.this);
         rQueue.add(request);
     }
+
+
 
 
 }
