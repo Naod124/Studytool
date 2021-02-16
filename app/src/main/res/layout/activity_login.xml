@@ -20,12 +20,15 @@
     android:layout_height="wrap_content"
     app:errorEnabled="true"
     android:id="@+id/username"
+    app:counterEnabled="true"
+    app:counterMaxLength="15"
+    app:counterOverflowTextColor="@color/red"
+    app:counterTextColor="@color/hkrGreen"
     >
 
     <com.google.android.material.textfield.TextInputEditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:inputType="text"
         android:hint="@string/enter_username"
         android:layout_marginBottom="8sp"
@@ -40,6 +43,9 @@
         app:passwordToggleContentDescription="@string/password"
         app:counterEnabled="true"
         android:id="@+id/password"
+        app:counterMaxLength="16"
+        app:counterTextColor="@color/hkrGreen"
+        app:counterOverflowTextColor="@color/red"
         >
 
         <com.google.android.material.textfield.TextInputEditText

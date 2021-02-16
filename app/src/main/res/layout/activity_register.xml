@@ -42,7 +42,11 @@
         android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:errorEnabled="true">
+        app:errorEnabled="true"
+        app:counterEnabled="true"
+        app:counterTextColor="@color/hkrGreen"
+        app:counterOverflowTextColor="@color/red"
+        app:counterMaxLength="15">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -57,7 +61,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:errorEnabled="true"
-        app:passwordToggleEnabled="true">
+        app:passwordToggleEnabled="true"
+        app:counterEnabled="true"
+        app:counterTextColor="@color/hkrGreen"
+        app:counterOverflowTextColor="@color/red"
+        app:counterMaxLength="16">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
