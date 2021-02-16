@@ -3,6 +3,7 @@ package com.company.studytool;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Build;
@@ -20,6 +21,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.firebase.client.Firebase;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,8 +33,7 @@ import org.json.JSONObject;
 
 public class login extends AppCompatActivity {
 
-    TextView register;
-    EditText username, password;
+    TextInputLayout username, password;
     Button loginButton;
     String user, pass;
     RequestQueue rQueue;
@@ -45,12 +46,10 @@ public class login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        register = (TextView) findViewById(R.id.register);
-        username = (EditText) findViewById(R.id.username);
-        password = (EditText) findViewById(R.id.password);
-        loginButton = (Button) findViewById(R.id.loginButton);
 
-        register.setOnClickListener(v -> startActivity(new Intent(login.this, Register.class)));
+        username = (TextInputLayout) findViewById(R.id.username);
+        password = (TextInputLayout) findViewById(R.id.password);
+        loginButton = (Button) findViewById(R.id.loginButton);
 
         loginButton.setOnClickListener(v -> {
 /*
@@ -62,12 +61,11 @@ This will add quiz to DB
 
 */
 
-            user = username.getText().toString();
-            pass = password.getText().toString();
-
-            if (user.equals("")) {
+            user = username.getEditText().getText().toString().trim();
+            pass = password.getEditText().getText().toString().trim();
+            if (user.isEmpty()) {
                 username.setError("can't be blank");
-            } else if (pass.equals("")) {
+            } else if (pass.isEmpty()) {
                 password.setError("can't be blank");
             } else {
                 url = getString(R.string.Db);
@@ -210,8 +208,6 @@ This will add quiz to DB
         RequestQueue rQueue = Volley.newRequestQueue(login.this);
         rQueue.add(request);
     }
-
-
 
 
 }

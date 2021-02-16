@@ -1,5 +1,25 @@
 <resources>
     <string name="app_name">Studytool</string>
     <string name="Db">https://mystudytool-7b85e-default-rtdb.firebaseio.com/Users.json</string>
-    <string name="quizzes">quizzes</string>
+    <string name="quizzes">Quizzes</string>
+    <string name="log_in">Log in</string>
+    <string name="confirm">Confirm</string>
+    <string name="sign_up">Sign up</string>
+    <string name="don_t_have_an_account">Do not have an account yet ?</string>
+    <string name="click_here">Click Here</string>
+    <string name="click_here_to_register">Click here to register</string>
+    <string name="enter_username">Username</string>
+    <string name="password">Password</string>
+    <string name="username">Username</string>
+    <string name="email">Someone@stud.hkr.se</string>
+    <string name="register">Register</string>
+    <string name="click_here_to_login">Click here to login</string>
+    <string name="passwordRules"><p><b><br> at least 1 digit</br>
+        <br>at least 1 lower case letter</br>
+        <br>at least 1 upper case letter</br>
+       <br> at least 1 special character</br>
+        <br>at least 4 characters</br>
+        <br>no white spaces</br>
+    </b></p>
+    </string>
 </resources>

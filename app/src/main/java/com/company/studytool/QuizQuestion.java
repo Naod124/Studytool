@@ -24,8 +24,6 @@ public class QuizQuestion extends AppCompatActivity {
         option2 = findViewById(R.id.choiceButton2);
         option3 = findViewById(R.id.choiceButton3);
         option4 = findViewById(R.id.choiceButton4);
-
-
     }
-    }
+}
 
