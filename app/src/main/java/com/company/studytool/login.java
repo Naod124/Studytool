@@ -163,13 +163,13 @@ This will add quiz to DB
         pd.setMessage("Loading...");
         pd.show();
 
-        String url = "https://mystudytool-7b85e-default-rtdb.firebaseio.com/Quizz.json";
+        String url = "https://studytool-304217-default-rtdb.firebaseio.com/Quiz.json";
 
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String s) {
 
-                Firebase reference = new Firebase("https://mystudytool-7b85e-default-rtdb.firebaseio.com/Quizz");
+                Firebase reference = new Firebase("https://studytool-304217-default-rtdb.firebaseio.com/Quiz");
 
                 switch (s) {
                     case "null":

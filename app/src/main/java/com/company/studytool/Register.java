@@ -2,6 +2,7 @@ package com.company.studytool;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Build;
@@ -19,8 +20,10 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.firebase.client.Firebase;
 import com.google.android.material.textfield.TextInputLayout;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.util.Objects;
 import java.util.regex.Pattern;
 
@@ -104,12 +107,12 @@ public class Register extends AppCompatActivity {
                     pd.setMessage("Loading...");
                     pd.show();
 
-                    String url = "https://mystudytool-7b85e-default-rtdb.firebaseio.com/Users.json";
+                    String url = "https://studytool-304217-default-rtdb.firebaseio.com/Users.json";
 
                     StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
                         @Override
                         public void onResponse(String s) {
-                            Firebase reference = new Firebase("https://mystudytool-7b85e-default-rtdb.firebaseio.com/Users");
+                            Firebase reference = new Firebase("https://studytool-304217-default-rtdb.firebaseio.com/Users");
 
                             if ("null".equals(s)) {
                                 reference.child(user).child("password").setValue(pass);
