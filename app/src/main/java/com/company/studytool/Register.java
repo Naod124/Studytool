@@ -27,7 +27,8 @@ import org.json.JSONObject;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
-public class Register extends AppCompatActivity {
+public class
+Register extends AppCompatActivity {
 
     private static final Pattern PASSWORD_PATTERN =
             Pattern.compile("^" +
@@ -97,9 +98,10 @@ public class Register extends AppCompatActivity {
                 } else if (user.length() < 5) {
                     username.setError("at least 5 characters long");
 //                }else if (pass.length() < 5){
-                } else if (!PASSWORD_PATTERN.matcher(pass).matches()) {
+                } /*else if (!PASSWORD_PATTERN.matcher(pass).matches()) {
                     password.setError(passRules);
-                } else if (!Email_PATTERN.matcher(Email).matches()) {
+
+                }*/ else if (!Email_PATTERN.matcher(Email).matches()) {
 //                } else if (!(Email.matches("^([\\w-\\.]+){1,64}@([\\w&&[^_]]+){2,255}.[a-z]{2,}$"))) {
                     email.setError("The format of email is not correct");
                 } else {

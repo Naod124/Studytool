@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/quiz_background">
+
+    <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+        android:id="@+id/youTubePlayerView"
+        android:layout_width="300dp"
+        android:layout_height="250dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
+        app:autoPlay="false"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:showYouTubeButton="false"
+        app:videoId="j6krFp511HA">
+
+    </com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView>
+
+    <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+        android:id="@+id/youTubePlayerView2"
+        android:layout_width="300dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="80dp"
+        app:autoPlay="false"
+        app:layout_constraintStart_toStartOf="@+id/youTubePlayerView"
+        app:layout_constraintTop_toBottomOf="@+id/youTubePlayerView"
+        app:showYouTubeButton="false"
+        app:videoId="kt8d3CYWGH4" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
