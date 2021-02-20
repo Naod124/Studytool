@@ -41,7 +41,7 @@ public class Register extends AppCompatActivity {
                     "$");
     private static final Pattern Email_PATTERN =
             Pattern.compile("[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" + //any character
-                    "\\@" + //@
+                    "\\@" +                                         //@
                     "[stud]{4}" +                                   //stud after @
                     "(" +
                     "\\." +                                         //dot after stud
