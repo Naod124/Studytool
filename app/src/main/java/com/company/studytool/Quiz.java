@@ -17,5 +17,7 @@ public class Quiz extends AppCompatActivity {
         setContentView(R.layout.activity_quizz);
         StartQuiz1=findViewById(R.id.startQuiz1);
         StartQuiz1.setOnClickListener(v -> startActivity(new Intent(Quiz.this, QuizQuestion.class)));
+
+
     }
 }

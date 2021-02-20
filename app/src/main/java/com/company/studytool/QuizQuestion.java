@@ -6,7 +6,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
-public class QuizQuestion extends AppCompatActivity {
+public class
+QuizQuestion extends AppCompatActivity {
     TextView mainQuestion;
     Button nextButton;
     ToggleButton option1;
