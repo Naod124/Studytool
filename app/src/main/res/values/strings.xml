@@ -22,4 +22,6 @@
         <br>no white spaces</br>
     </b></p>
     </string>
+    <string name="page_number">Page Number</string>
+    <string name="search">search</string>
 </resources>

@@ -20,7 +20,6 @@ public class DigitalBook extends AppCompatActivity {
         setContentView(R.layout.activity_digital_book);
         pdfView= (PDFView)findViewById(R.id.pdf);
         pdfView.fromAsset("digital-systems-design.pdf").load();
-        pdfView.getCurrentPage();
         text = findViewById(R.id.txtview);
         Button button1 = findViewById(R.id.buttn);
         button1.setOnClickListener(new View.OnClickListener() {
