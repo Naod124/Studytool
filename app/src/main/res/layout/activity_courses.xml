@@ -10,7 +10,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context=".Register">
+    tools:context=".Courses">
 
     <!--    -->
 
@@ -19,41 +19,45 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:gravity="center"
-        android:text="Courses"
+        android:text="@string/courses"
         android:textColor="@color/hkrDarkGreen"
-        android:textSize="30dp" />
+        android:textSize="30sp" />
 
     <Button
-        android:id="@+id/moveToQuiz"
+        android:id="@+id/moveToDS"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:background="@drawable/custom_button"
-        android:text="Algorithms and Data Structures" />
+        android:text="@string/algorithms_and_data_structures"
+         android:onClick="onClick"/>
 
 
     <Button
-        android:id="@+id/analysis"
+        android:id="@+id/moveToOS"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:background="@drawable/custom_button"
-        android:text="Operating Systems" />
+        android:text="@string/operating_systems"
+        android:onClick="onClick"/>
 
     <Button
-        android:id="@+id/privatechat"
+        android:id="@+id/moveToDC"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:background="@drawable/custom_button"
-        android:text="Data Communication" />
+        android:text="@string/data_communication"
+        android:onClick="onClick"/>
     <Button
-        android:id="@+id/digital"
+        android:id="@+id/moveToDigital"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:background="@drawable/custom_button"
-        android:text="Digital System" />
+        android:text="@string/digital_system"
+        android:onClick="onClick"/>
 
 
 </LinearLayout>

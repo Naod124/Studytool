@@ -9,10 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Studytool">
-        <activity android:name=".DigitalBook"></activity>
         <activity android:name=".TruthTable" />
         <activity android:name=".DigitalVideo" />
-        <activity android:name=".DigitalCourse" />
+        <activity android:name=".SelectedCourseActivity" />
         <activity android:name=".Courses" />
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -21,11 +20,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".QuizQuestion" />
+        <activity android:name=".DigitalBook"/>
         <activity android:name=".login" />
         <activity android:name=".Menu" />
         <activity android:name=".Register" />
-        <activity android:name=".Quiz" />
+        <activity android:name=".Quiz"/>
     </application>
 
 </manifest>

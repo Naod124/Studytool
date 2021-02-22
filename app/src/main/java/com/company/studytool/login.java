@@ -1,6 +1,5 @@
 package com.company.studytool;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,10 +7,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -22,11 +18,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.firebase.client.Firebase;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -157,7 +148,7 @@ This will add quiz to DB
 //    }
 
 
-    public void addQuiz(String courseName, String QuizTitle, Question question, int number) {
+    public void addQuiz(String courseName, String QuizTitle, QuestionModel questionModel, int number) {
         Firebase.setAndroidContext(getApplicationContext());
         final ProgressDialog pd = new ProgressDialog(login.this);
         pd.setMessage("Loading...");
@@ -173,7 +164,7 @@ This will add quiz to DB
 
                 switch (s) {
                     case "null":
-                        reference.child(courseName).child(QuizTitle).child(String.valueOf(number)).setValue(question);
+                        reference.child(courseName).child(QuizTitle).child(String.valueOf(number)).setValue(questionModel);
 
                         Toast.makeText(login.this, "done", Toast.LENGTH_LONG).show();
                         break;
@@ -181,8 +172,8 @@ This will add quiz to DB
                         try {
                             JSONObject obj = new JSONObject(s);
 
-                            if (!obj.has(String.valueOf(question))) {
-                                reference.child(courseName).child(QuizTitle).child(String.valueOf(number)).setValue(question);
+                            if (!obj.has(String.valueOf(questionModel))) {
+                                reference.child(courseName).child(QuizTitle).child(String.valueOf(number)).setValue(questionModel);
                                 Toast.makeText(login.this, "registration successful", Toast.LENGTH_LONG).show();
 
                             } else {
