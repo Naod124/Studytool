@@ -26,11 +26,9 @@ public class DigitalBook extends AppCompatActivity {
         if (courseName.equals("Digital System Design")) {
             pdfView.fromAsset("digital-systems-design.pdf").load();
         } else if (courseName.equals("Data Structure")) {
-            //book missing
-//            pdfView.fromAsset("operating-system-concepts.pdf").load();
+            pdfView.fromAsset("Data_Structures_Algorithm.pdf").load();
         } else if (courseName.equals("Data Communication")) {
-            //book missing
-//            pdfView.fromAsset("operating-system-concepts.pdf").load();
+            pdfView.fromAsset("Computer_Networks_and_Internets.pdf").load();
         } else if (courseName.equals("Operating System")) {
             pdfView.fromAsset("operating-system-concepts.pdf").load();
         }
