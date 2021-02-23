@@ -7,6 +7,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -17,6 +18,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.firebase.client.Firebase;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import org.json.JSONException;
@@ -41,7 +43,6 @@ public class login extends AppCompatActivity {
         username = (TextInputLayout) findViewById(R.id.username);
         password = (TextInputLayout) findViewById(R.id.password);
         loginButton = (Button) findViewById(R.id.loginButton);
-
         loginButton.setOnClickListener(v -> {
 /*
 This will add quiz to DB
@@ -76,6 +77,8 @@ This will add quiz to DB
 
                                 username.setError("User is not found");
                             } else if (obj.getJSONObject(user).getString("Password").equals(pass)) {
+                                StudentDetails.username = user;
+                                StudentDetails.password = pass;
                                 startActivity(new Intent(login.this, Menu.class));
                             } else {
                                 password.setError("password is incorrect");

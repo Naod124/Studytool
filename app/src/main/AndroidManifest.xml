@@ -9,6 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Studytool">
+        <activity android:name=".privateMessage"></activity>
+        <activity android:name=".StudentList" />
         <activity android:name=".TruthTable" />
         <activity android:name=".DigitalVideo" />
         <activity android:name=".SelectedCourseActivity" />
