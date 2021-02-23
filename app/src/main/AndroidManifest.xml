@@ -20,11 +20,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DigitalBook"/>
+        <activity android:name=".PracticeActivity" />
+        <activity android:name=".ShowScoreActivity" />
+        <activity android:name=".DigitalBook" />
         <activity android:name=".login" />
         <activity android:name=".Menu" />
         <activity android:name=".Register" />
-        <activity android:name=".Quiz"/>
+        <activity android:name=".Quiz" />
     </application>
 
 </manifest>

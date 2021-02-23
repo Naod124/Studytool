@@ -1,10 +1,11 @@
 package com.company.studytool;
+
 public class QuestionModel {
     String question;
     String choice1;
-    String choice2 ;
-    String choice3 ;
-    String choice4 ;
+    String choice2;
+    String choice3;
+    String choice4;
     String rightAnswer;
 
     public QuestionModel() {

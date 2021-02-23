@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/quiz_background"
+    android:background="@drawable/project_login_background"
     android:padding="10dp"
     tools:context=".Quiz">
 
@@ -12,30 +12,28 @@
         android:id="@+id/timer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:layout_marginEnd="16dp"
         android:text="00:30"
         android:textAlignment="center"
-        android:textColor="@color/hkrDarkGreen"
+        android:textColor="@color/white"
         android:textSize="25sp"
-        app:layout_constraintBottom_toTopOf="@+id/question"
+        app:layout_constraintBaseline_toBaselineOf="@+id/questionNum"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/questionNum"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toEndOf="@+id/questionNum" />
 
     <TextView
         android:id="@+id/questionNum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="256dp"
+        android:layout_marginTop="16dp"
         android:text="Questions : 1/n"
         android:textAlignment="center"
-        android:textColor="@color/hkrDarkGreen"
+        android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.01"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -45,14 +43,14 @@
         android:layout_marginTop="12dp"
         android:text="Score : 0"
         android:textAlignment="center"
-        android:textColor="@color/hkrDarkGreen"
+        android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/question"
         app:layout_constraintEnd_toEndOf="@+id/questionNum"
-        app:layout_constraintHorizontal_bias="0.482"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/questionNum"
         app:layout_constraintTop_toBottomOf="@+id/questionNum"
-        app:layout_constraintVertical_bias="0.092" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/question"
@@ -61,7 +59,7 @@
         android:layout_marginTop="248dp"
         android:lines="3"
         android:text="The Question will be here"
-        android:textColor="@color/hkrDarkGreen"
+        android:textColor="@color/white"
         android:textSize="17sp"
         app:layout_constraintBottom_toTopOf="@+id/radioGroup"
         app:layout_constraintEnd_toEndOf="parent"
@@ -84,34 +82,38 @@
 
         <RadioButton
             android:id="@+id/choice1"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/custom_button"
+            android:background="@drawable/button_pressed"
             android:text="Option 1"
+            android:textColor="@color/white"
             android:textSize="17sp" />
 
         <RadioButton
             android:id="@+id/choice2"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/custom_button"
+            android:background="@drawable/button_pressed"
             android:text="Option 2"
+            android:textColor="@color/white"
             android:textSize="17sp" />
 
         <RadioButton
             android:id="@+id/choice3"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/custom_button"
+            android:background="@drawable/button_pressed"
             android:text="Option 3"
+            android:textColor="@color/white"
             android:textSize="17sp" />
 
         <RadioButton
             android:id="@+id/choice4"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/custom_button"
+            android:background="@drawable/button_pressed"
             android:text="Option 4"
+            android:textColor="@color/white"
             android:textSize="17sp" />
 
     </RadioGroup>

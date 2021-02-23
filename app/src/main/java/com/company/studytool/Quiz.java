@@ -1,9 +1,12 @@
 package com.company.studytool;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.widget.Button;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -11,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
@@ -21,18 +25,27 @@ public class Quiz extends AppCompatActivity {
     RadioButton choice2;
     RadioButton choice3;
     RadioButton choice4;
+    RadioButton checkedButton;
     ImageButton nextQuestion;
     TextView question;
     TextView questionNum;
     TextView timer;
     TextView score;
-    int time = 5;
+    String rightAnswer;
+    int time = 10; // for testing purpose
     int scoreNum = 0;
     int position = 0;
-    ArrayList<QuestionModel> dSQuiz = new ArrayList<>();
+    static int highScore = 0;
+    private ArrayList<QuestionModel> dSQuiz = new ArrayList<>();
+    Drawable pressedButton;
+    Drawable disabledButton;
+    CountDownTimer countDownTimer;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        pressedButton = getResources().getDrawable(R.drawable.button_pressed);
+        disabledButton = getResources().getDrawable(R.drawable.button_disabled);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.quiz_activity);
         radioGroup = findViewById(R.id.radioGroup);
@@ -45,8 +58,10 @@ public class Quiz extends AppCompatActivity {
         questionNum = findViewById(R.id.questionNum);
         timer = findViewById(R.id.timer);
         score = findViewById(R.id.score);
-        initializeQuestion();
-        createQuiz();
+        nextQuestion.setEnabled(false);
+        prepareDsQuiz();
+        rightAnswer = dSQuiz.get(position).rightAnswer;
+        questionNum.setText("Questions : " + (position + 1) + "/" + dSQuiz.size());
         question.setText(dSQuiz.get(position).question);
         choice1.setText(dSQuiz.get(position).choice1);
         choice2.setText(dSQuiz.get(position).choice2);
@@ -56,28 +71,80 @@ public class Quiz extends AppCompatActivity {
             @SuppressLint("SetTextI18n")
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                RadioButton radioButton = findViewById(checkedId);
-                if (radioButton.getText().equals(dSQuiz.get(position).rightAnswer)) {
+                checkedButton = findViewById(checkedId);
+                if (checkedButton.getText().equals(dSQuiz.get(position).rightAnswer)) {
+                    nextQuestion.setEnabled(true);
+                    System.out.println(checkedButton.getId());
+                    if (choice1.getId() == checkedButton.getId()) {
+                        choice2.setBackground(disabledButton);
+                        choice3.setBackground(disabledButton);
+                        choice4.setBackground(disabledButton);
+                        choice2.setEnabled(false);
+                        choice3.setEnabled(false);
+                        choice4.setEnabled(false);
+                    } else if (choice2.getId() == checkedButton.getId()) {
+                        choice1.setBackground(disabledButton);
+                        choice3.setBackground(disabledButton);
+                        choice4.setBackground(disabledButton);
+                        choice1.setEnabled(false);
+                        choice3.setEnabled(false);
+                        choice4.setEnabled(false);
+                    } else if (choice3.getId() == checkedButton.getId()) {
+                        choice1.setBackground(disabledButton);
+                        choice2.setBackground(disabledButton);
+                        choice4.setBackground(disabledButton);
+                        choice1.setEnabled(false);
+                        choice2.setEnabled(false);
+                        choice4.setEnabled(false);
+                    } else if (choice4.getId() == checkedButton.getId()) {
+                        choice1.setBackground(disabledButton);
+                        choice2.setBackground(disabledButton);
+                        choice3.setBackground(disabledButton);
+                        choice1.setEnabled(false);
+                        choice2.setEnabled(false);
+                        choice3.setEnabled(false);
+                    }
                     scoreNum++;
+                    countDownTimer.cancel();
                     score.setText("Score : " + scoreNum);
                     Toast.makeText(Quiz.this, "RightAnswer", Toast.LENGTH_SHORT).show();
                 }
 
+
             }
         });
         startTimer();
+        nextQuestion.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onClick(View v) {
+                if (position < dSQuiz.size() - 1) {
+//                    if (position >= dSQuiz.size()) {
+//                        alertDialog("Do you wanna repeat this quiz ?", "Quiz Complete");
+//                    }
+                    position++;
+                    questionNum.setText("Questions : " + (position + 1) + "/" + dSQuiz.size());
+                    choice1.setBackground(pressedButton);
+                    choice2.setBackground(pressedButton);
+                    choice3.setBackground(pressedButton);
+                    choice4.setBackground(pressedButton);
+                    enableAllChoices();
+                    question.setText(dSQuiz.get(position).question);
+                    choice1.setText(dSQuiz.get(position).choice1);
+                    choice2.setText(dSQuiz.get(position).choice2);
+                    choice3.setText(dSQuiz.get(position).choice3);
+                    choice4.setText(dSQuiz.get(position).choice4);
+                    nextQuestion.setEnabled(false);
+                    time = 10;
+                    countDownTimer.start();
 
-    }
-
-    private void createQuiz() {
-        QuizModel DsQuiz = new QuizModel(dSQuiz);
-        QuizModel DcQuiz = new QuizModel(null);
-        QuizModel OsQuiz = new QuizModel(null);
-        QuizModel DdQuiz = new QuizModel(null);
+                } else alertDialog();
+            }
+        });
     }
 
     private void startTimer() {
-        CountDownTimer countDownTimer = new CountDownTimer(5000, 1000) {
+        countDownTimer = new CountDownTimer(10000, 1000) {
             @SuppressLint("SetTextI18n")
             @Override
             public void onTick(long millisUntilFinished) {
@@ -89,16 +156,79 @@ public class Quiz extends AppCompatActivity {
             @Override
             public void onFinish() {
                 timer.setText("0:0");
-                Toast.makeText(Quiz.this, "Time is finished .. try again", Toast.LENGTH_SHORT).show();
+                choice1.setBackground(disabledButton);
+                choice2.setBackground(disabledButton);
+                choice3.setBackground(disabledButton);
+                choice4.setBackground(disabledButton);
+                disableAllChoices();
+                nextQuestion.setEnabled(true);
+                rightAnswer = dSQuiz.get(position).rightAnswer;
+                Toast.makeText(Quiz.this, "i think >>" + rightAnswer + "<< is the right answer ..", Toast.LENGTH_LONG).show();
             }
         }.start();
     }
 
-//    public String checkDigit(int number) {
-//        return number <= 9 ? "0" + number : String.valueOf(number);
-//    }
+    private void alertDialog() {
+        AlertDialog alertDialog = new AlertDialog.Builder(Quiz.this)
+                .setMessage("Do you wanna repeat this quiz ?").setTitle("Quiz Complete").setPositiveButton("yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        position = 0;
+                    }
+                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(Quiz.this, ShowScoreActivity.class).putExtra("score", scoreNum);
+                        startActivity(intent);
+                    }
+                }).show();
+    }
 
-    private void initializeQuestion() {
+    private boolean isCheckedChoiceRight(RadioButton button) {
+        if (!button.getText().equals(dSQuiz.get(position).rightAnswer)) {
+            return true;
+        } else return false;
+    }
+
+    private void enableAllChoices() {
+        choice1.setEnabled(true);
+        choice2.setEnabled(true);
+        choice3.setEnabled(true);
+        choice4.setEnabled(true);
+    }
+
+    private void showRightChoice(RadioButton checkedOn) {
+        if (checkedOn.getText().equals(dSQuiz.get(position).rightAnswer)) {
+            choice2.setBackground(disabledButton);
+            choice3.setBackground(disabledButton);
+            choice4.setBackground(disabledButton);
+            disableAllChoices();
+        } else if (checkedOn.getText().equals(dSQuiz.get(position).rightAnswer)) {
+            checkedOn.setBackground(disabledButton);
+            choice3.setBackground(disabledButton);
+            choice4.setBackground(disabledButton);
+            disableAllChoices();
+        } else if (checkedOn.getText().equals(dSQuiz.get(position).rightAnswer)) {
+            checkedOn.setBackground(disabledButton);
+            choice2.setBackground(disabledButton);
+            choice4.setBackground(disabledButton);
+            disableAllChoices();
+        } else if (checkedOn.getText().equals(dSQuiz.get(position).rightAnswer)) {
+            checkedOn.setBackground(disabledButton);
+            choice2.setBackground(disabledButton);
+            choice3.setBackground(disabledButton);
+            disableAllChoices();
+        }
+    }
+
+    private void disableAllChoices() {
+        choice1.setEnabled(false);
+        choice2.setEnabled(false);
+        choice3.setEnabled(false);
+        choice4.setEnabled(false);
+    }
+
+    public void prepareDsQuiz() {
         QuestionModel question1 = new QuestionModel("Two main measures for the efficiency of an algorithm are", "Processor and memory",
                 "Complexity and capacity", "Data and space", "Time and space", "Time and space");
         QuestionModel question2 = new QuestionModel("The time factor when determining the efficiency of algorithm is measured by",
@@ -143,22 +273,28 @@ public class Quiz extends AppCompatActivity {
         dSQuiz.add(question2);
         dSQuiz.add(question3);
         dSQuiz.add(question4);
-        dSQuiz.add(question5);
-        dSQuiz.add(question6);
-        dSQuiz.add(question7);
-        dSQuiz.add(question8);
-        dSQuiz.add(question9);
-        dSQuiz.add(question10);
-        dSQuiz.add(question11);
-        dSQuiz.add(question12);
-        dSQuiz.add(question13);
-        dSQuiz.add(question14);
-        dSQuiz.add(question15);
-        dSQuiz.add(question16);
-        dSQuiz.add(question17);
-        dSQuiz.add(question18);
-        dSQuiz.add(question19);
-        dSQuiz.add(question20);
-        dSQuiz.add(question21);
+//        dSQuiz.add(question5);
+//        dSQuiz.add(question6);
+//        dSQuiz.add(question7);
+//        dSQuiz.add(question8);
+//        dSQuiz.add(question9);
+//        dSQuiz.add(question10);
+//        dSQuiz.add(question11);
+//        dSQuiz.add(question12);
+//        dSQuiz.add(question13);
+//        dSQuiz.add(question14);
+//        dSQuiz.add(question15);
+//        dSQuiz.add(question16);
+//        dSQuiz.add(question17);
+//        dSQuiz.add(question18);
+//        dSQuiz.add(question19);
+//        dSQuiz.add(question20);
+//        dSQuiz.add(question21);
     }
+
+//    public String checkDigit(int number) {
+//        return number <= 9 ? "0" + number : String.valueOf(number);
+//    }
+
+
 }
