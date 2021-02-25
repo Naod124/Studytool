@@ -36,9 +36,9 @@ public class Quiz extends AppCompatActivity {
     int scoreNum = 0;
     int position = 0;
     static int highScore = 0;
-    private ArrayList<QuestionModel> dSQuiz = new ArrayList<>();
-    private ArrayList<QuestionModel> DcQuiz = new ArrayList<>();
-
+    private final ArrayList<QuestionModel> dSQuiz = new ArrayList<>();
+    private final ArrayList<QuestionModel> DcQuiz = new ArrayList<>();
+    String courseName = "";
     Drawable pressedButton;
     Drawable disabledButton;
     CountDownTimer countDownTimer;
@@ -60,19 +60,19 @@ public class Quiz extends AppCompatActivity {
         questionNum = findViewById(R.id.questionNum);
         timer = findViewById(R.id.timer);
         score = findViewById(R.id.score);
+        Intent intent = getIntent();
+        courseName = intent.getStringExtra("course");
         nextQuestion.setEnabled(false);
-        prepareDsQuiz();
-        rightAnswer = dSQuiz.get(position).rightAnswer;
-        questionNum.setText("Questions : " + (position + 1) + "/" + dSQuiz.size());
-        question.setText(dSQuiz.get(position).question);
-        choice1.setText(dSQuiz.get(position).choice1);
-        choice2.setText(dSQuiz.get(position).choice2);
-        choice3.setText(dSQuiz.get(position).choice3);
-        choice4.setText(dSQuiz.get(position).choice4);
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
+        if (courseName.equals("Data Structure")) {
+            prepareDsQuiz();
+            rightAnswer = dSQuiz.get(position).rightAnswer;
+            questionNum.setText("Questions : " + (position + 1) + "/" + dSQuiz.size());
+            question.setText(dSQuiz.get(position).question);
+            choice1.setText(dSQuiz.get(position).choice1);
+            choice2.setText(dSQuiz.get(position).choice2);
+            choice3.setText(dSQuiz.get(position).choice3);
+            choice4.setText(dSQuiz.get(position).choice4);
+            radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
                 checkedButton = findViewById(checkedId);
                 if (checkedButton.getText().equals(dSQuiz.get(position).rightAnswer)) {
                     nextQuestion.setEnabled(true);
@@ -113,13 +113,9 @@ public class Quiz extends AppCompatActivity {
                 }
 
 
-            }
-        });
-        startTimer();
-        nextQuestion.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onClick(View v) {
+            });
+            startTimer(dSQuiz);
+            nextQuestion.setOnClickListener(v -> {
                 if (position < dSQuiz.size() - 1) {
 //                    if (position >= dSQuiz.size()) {
 //                        alertDialog("Do you wanna repeat this quiz ?", "Quiz Complete");
@@ -141,11 +137,98 @@ public class Quiz extends AppCompatActivity {
                     countDownTimer.start();
 
                 } else alertDialog();
-            }
-        });
+            });
+        }
+
+        if (courseName.equals("Data Communication")) {
+            prepareDcQuiz();
+            rightAnswer = DcQuiz.get(position).rightAnswer;
+            questionNum.setText("Questions : " + (position + 1) + "/" + DcQuiz.size());
+            question.setText(DcQuiz.get(position).question);
+            choice1.setText(DcQuiz.get(position).choice1);
+            choice2.setText(DcQuiz.get(position).choice2);
+            choice3.setText(DcQuiz.get(position).choice3);
+            choice4.setText(DcQuiz.get(position).choice4);
+            radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                @SuppressLint("SetTextI18n")
+                @Override
+                public void onCheckedChanged(RadioGroup group, int checkedId) {
+                    checkedButton = findViewById(checkedId);
+                    if (checkedButton.getText().equals(DcQuiz.get(position).rightAnswer)) {
+                        nextQuestion.setEnabled(true);
+                        System.out.println(checkedButton.getId());
+                        if (choice1.getId() == checkedButton.getId()) {
+                            choice2.setBackground(disabledButton);
+                            choice3.setBackground(disabledButton);
+                            choice4.setBackground(disabledButton);
+                            choice2.setEnabled(false);
+                            choice3.setEnabled(false);
+                            choice4.setEnabled(false);
+                        } else if (choice2.getId() == checkedButton.getId()) {
+                            choice1.setBackground(disabledButton);
+                            choice3.setBackground(disabledButton);
+                            choice4.setBackground(disabledButton);
+                            choice1.setEnabled(false);
+                            choice3.setEnabled(false);
+                            choice4.setEnabled(false);
+                        } else if (choice3.getId() == checkedButton.getId()) {
+                            choice1.setBackground(disabledButton);
+                            choice2.setBackground(disabledButton);
+                            choice4.setBackground(disabledButton);
+                            choice1.setEnabled(false);
+                            choice2.setEnabled(false);
+                            choice4.setEnabled(false);
+                        } else if (choice4.getId() == checkedButton.getId()) {
+                            choice1.setBackground(disabledButton);
+                            choice2.setBackground(disabledButton);
+                            choice3.setBackground(disabledButton);
+                            choice1.setEnabled(false);
+                            choice2.setEnabled(false);
+                            choice3.setEnabled(false);
+                        }
+                        scoreNum++;
+                        countDownTimer.cancel();
+                        score.setText("Score : " + scoreNum);
+                        Toast.makeText(Quiz.this, "RightAnswer", Toast.LENGTH_SHORT).show();
+                    }
+
+
+                }
+            });
+            startTimer(DcQuiz);
+            nextQuestion.setOnClickListener(new View.OnClickListener() {
+                @SuppressLint("SetTextI18n")
+                @Override
+                public void onClick(View v) {
+                    if (position < DcQuiz.size() - 1) {
+//                    if (position >= DcQuiz.size()) {
+//                        alertDialog("Do you wanna repeat this quiz ?", "Quiz Complete");
+//                    }
+                        position++;
+                        questionNum.setText("Questions : " + (position + 1) + "/" + DcQuiz.size());
+                        choice1.setBackground(pressedButton);
+                        choice2.setBackground(pressedButton);
+                        choice3.setBackground(pressedButton);
+                        choice4.setBackground(pressedButton);
+                        enableAllChoices();
+                        question.setText(DcQuiz.get(position).question);
+                        choice1.setText(DcQuiz.get(position).choice1);
+                        choice2.setText(DcQuiz.get(position).choice2);
+                        choice3.setText(DcQuiz.get(position).choice3);
+                        choice4.setText(DcQuiz.get(position).choice4);
+                        nextQuestion.setEnabled(false);
+                        time = 10;
+                        countDownTimer.start();
+
+                    } else alertDialog();
+                }
+            });
+        }
+
+
     }
 
-    private void startTimer() {
+    private void startTimer(ArrayList<QuestionModel> myQuiz) {
         countDownTimer = new CountDownTimer(10000, 1000) {
             @SuppressLint("SetTextI18n")
             @Override
@@ -164,7 +247,7 @@ public class Quiz extends AppCompatActivity {
                 choice4.setBackground(disabledButton);
                 disableAllChoices();
                 nextQuestion.setEnabled(true);
-                rightAnswer = dSQuiz.get(position).rightAnswer;
+                rightAnswer = myQuiz.get(position).rightAnswer;
                 Toast.makeText(Quiz.this, "i think >>" + rightAnswer + "<< is the right answer ..", Toast.LENGTH_LONG).show();
             }
         }.start();
@@ -186,8 +269,8 @@ public class Quiz extends AppCompatActivity {
                 }).show();
     }
 
-    private boolean isCheckedChoiceRight(RadioButton button) {
-        if (!button.getText().equals(dSQuiz.get(position).rightAnswer)) {
+    private boolean isCheckedChoiceRight(RadioButton button,ArrayList<QuestionModel> myQuiz) {
+        if (!button.getText().equals(myQuiz.get(position).rightAnswer)) {
             return true;
         } else return false;
     }
@@ -199,23 +282,23 @@ public class Quiz extends AppCompatActivity {
         choice4.setEnabled(true);
     }
 
-    private void showRightChoice(RadioButton checkedOn) {
-        if (checkedOn.getText().equals(dSQuiz.get(position).rightAnswer)) {
+    private void showRightChoice(RadioButton checkedOn ,ArrayList<QuestionModel> myQuiz) {
+        if (checkedOn.getText().equals(myQuiz.get(position).rightAnswer)) {
             choice2.setBackground(disabledButton);
             choice3.setBackground(disabledButton);
             choice4.setBackground(disabledButton);
             disableAllChoices();
-        } else if (checkedOn.getText().equals(dSQuiz.get(position).rightAnswer)) {
+        } else if (checkedOn.getText().equals(myQuiz.get(position).rightAnswer)) {
             checkedOn.setBackground(disabledButton);
             choice3.setBackground(disabledButton);
             choice4.setBackground(disabledButton);
             disableAllChoices();
-        } else if (checkedOn.getText().equals(dSQuiz.get(position).rightAnswer)) {
+        } else if (checkedOn.getText().equals(myQuiz.get(position).rightAnswer)) {
             checkedOn.setBackground(disabledButton);
             choice2.setBackground(disabledButton);
             choice4.setBackground(disabledButton);
             disableAllChoices();
-        } else if (checkedOn.getText().equals(dSQuiz.get(position).rightAnswer)) {
+        } else if (checkedOn.getText().equals(myQuiz.get(position).rightAnswer)) {
             checkedOn.setBackground(disabledButton);
             choice2.setBackground(disabledButton);
             choice3.setBackground(disabledButton);
@@ -358,7 +441,7 @@ public class Quiz extends AppCompatActivity {
                 "", "", "a radio signal based network. ", "a packet switched network. ");
         QuestionModel question31 = new QuestionModel("Why are port numbers included in the TCP header of a segment?", "to allow the receiving host to assemble the packet in the proper order",
                 "to identify which switch ports should receive or forward the segment", "to determine which Layer 3 protocol should be used to encapsulate the data", "to indicate the correct router interface that should be used to forward a segment", "to enable a receiving host to forward the data to the appropriate application");
-       DcQuiz.add(question1);
+        DcQuiz.add(question1);
         DcQuiz.add(question2);
         DcQuiz.add(question3);
         DcQuiz.add(question4);
