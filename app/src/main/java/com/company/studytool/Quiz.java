@@ -17,6 +17,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 public class Quiz extends AppCompatActivity {
@@ -38,6 +39,8 @@ public class Quiz extends AppCompatActivity {
     static int highScore = 0;
     private final ArrayList<QuestionModel> dSQuiz = new ArrayList<>();
     private final ArrayList<QuestionModel> DcQuiz = new ArrayList<>();
+    private final ArrayList<QuestionModel> OsQuiz = new ArrayList<>();
+
     String courseName = "";
     Drawable pressedButton;
     Drawable disabledButton;
@@ -140,7 +143,7 @@ public class Quiz extends AppCompatActivity {
             });
         }
 
-        if (courseName.equals("Data Communication")) {
+        else if (courseName.equals("Data Communication")) {
             prepareDcQuiz();
             rightAnswer = DcQuiz.get(position).rightAnswer;
             questionNum.setText("Questions : " + (position + 1) + "/" + DcQuiz.size());
@@ -224,6 +227,86 @@ public class Quiz extends AppCompatActivity {
                 }
             });
         }
+        else if (courseName.equals("Operating System")) {
+            prepareOsQuiz();
+            rightAnswer = OsQuiz.get(position).rightAnswer;
+            questionNum.setText("Questions : " + (position + 1) + "/" + OsQuiz.size());
+            question.setText(OsQuiz.get(position).question);
+            choice1.setText(OsQuiz.get(position).choice1);
+            choice2.setText(OsQuiz.get(position).choice2);
+            choice3.setText(OsQuiz.get(position).choice3);
+            choice4.setText(OsQuiz.get(position).choice4);
+            radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                @SuppressLint("SetTextI18n")
+                @Override
+                public void onCheckedChanged(RadioGroup group, int checkedId) {
+                    checkedButton = findViewById(checkedId);
+                    if (checkedButton.getText().equals(OsQuiz.get(position).rightAnswer)) {
+                        nextQuestion.setEnabled(true);
+                        System.out.println(checkedButton.getId());
+                        if (choice1.getId() == checkedButton.getId()) {
+                            choice2.setBackground(disabledButton);
+                            choice3.setBackground(disabledButton);
+                            choice4.setBackground(disabledButton);
+                            choice2.setEnabled(false);
+                            choice3.setEnabled(false);
+                            choice4.setEnabled(false);
+                        } else if (choice2.getId() == checkedButton.getId()) {
+                            choice1.setBackground(disabledButton);
+                            choice3.setBackground(disabledButton);
+                            choice4.setBackground(disabledButton);
+                            choice1.setEnabled(false);
+                            choice3.setEnabled(false);
+                            choice4.setEnabled(false);
+                        } else if (choice3.getId() == checkedButton.getId()) {
+                            choice1.setBackground(disabledButton);
+                            choice2.setBackground(disabledButton);
+                            choice4.setBackground(disabledButton);
+                            choice1.setEnabled(false);
+                            choice2.setEnabled(false);
+                            choice4.setEnabled(false);
+                        } else if (choice4.getId() == checkedButton.getId()) {
+                            choice1.setBackground(disabledButton);
+                            choice2.setBackground(disabledButton);
+                            choice3.setBackground(disabledButton);
+                            choice1.setEnabled(false);
+                            choice2.setEnabled(false);
+                            choice3.setEnabled(false);
+                        }
+                        scoreNum++;
+                        countDownTimer.cancel();
+                        score.setText("Score : " + scoreNum);
+                        Toast.makeText(Quiz.this, "RightAnswer", Toast.LENGTH_SHORT).show();
+                    }
+
+
+                }
+            });
+            startTimer(OsQuiz);
+            nextQuestion.setOnClickListener(v -> {
+                if (position < OsQuiz.size() - 1) {
+//                    if (position >= OsQuiz.size()) {
+//                        alertDialog("Do you wanna repeat this quiz ?", "Quiz Complete");
+//                    }
+                    position++;
+                    questionNum.setText("Questions : " + (position + 1) + "/" + OsQuiz.size());
+                    choice1.setBackground(pressedButton);
+                    choice2.setBackground(pressedButton);
+                    choice3.setBackground(pressedButton);
+                    choice4.setBackground(pressedButton);
+                    enableAllChoices();
+                    question.setText(OsQuiz.get(position).question);
+                    choice1.setText(OsQuiz.get(position).choice1);
+                    choice2.setText(OsQuiz.get(position).choice2);
+                    choice3.setText(OsQuiz.get(position).choice3);
+                    choice4.setText(OsQuiz.get(position).choice4);
+                    nextQuestion.setEnabled(false);
+                    time = 10;
+                    countDownTimer.start();
+
+                } else alertDialog();
+            });
+        }
 
 
     }
@@ -269,7 +352,7 @@ public class Quiz extends AppCompatActivity {
                 }).show();
     }
 
-    private boolean isCheckedChoiceRight(RadioButton button,ArrayList<QuestionModel> myQuiz) {
+    private boolean isCheckedChoiceRight(RadioButton button, ArrayList<QuestionModel> myQuiz) {
         if (!button.getText().equals(myQuiz.get(position).rightAnswer)) {
             return true;
         } else return false;
@@ -282,7 +365,7 @@ public class Quiz extends AppCompatActivity {
         choice4.setEnabled(true);
     }
 
-    private void showRightChoice(RadioButton checkedOn ,ArrayList<QuestionModel> myQuiz) {
+    private void showRightChoice(RadioButton checkedOn, ArrayList<QuestionModel> myQuiz) {
         if (checkedOn.getText().equals(myQuiz.get(position).rightAnswer)) {
             choice2.setBackground(disabledButton);
             choice3.setBackground(disabledButton);
@@ -380,16 +463,16 @@ public class Quiz extends AppCompatActivity {
     public void prepareDcQuiz() {
 
         QuestionModel question1 = new QuestionModel("Local DNS name servers", "obtain resource records from Web caches",
-                "cache resource records and never discard them ", "never cache resource records", "", "cache resource records, but discard them after a period of time that is on the order of a few days");
+                "cache resource records and never discard them ", "never cache resource records", "non", "cache resource records, but discard them after a period of time that is on the order of a few days");
         QuestionModel question2 = new QuestionModel("Which application layer protocol correctly match a corresponding function?", "SMTP supports file sharing",
-                "", "POP delivers email from the client to the email server", "DNS dynamically allocates IP addresses to hosts", "HTTP transfers data from a web server to a client ");
+                "non", "POP delivers email from the client to the email server", "DNS dynamically allocates IP addresses to hosts", "HTTP transfers data from a web server to a client ");
         QuestionModel question3 = new QuestionModel("Which protocol is used to control the transfer of web resources from a web server to a client browser?", "TCP",
                 "HTML", "ASP", "IP", "HTTP");
         QuestionModel question4 = new QuestionModel("What IS NOT protocols operate at the Application layer of the OSI model?", "HTTP",
                 "DNS", "FTP", "SMTP", "IP");
         QuestionModel question5 = new QuestionModel("Which layer of the OSI model do packets belong to?", "Data link ",
-                "", "Presentation", "Transport", "Network");
-        QuestionModel question6 = new QuestionModel("An RFC is defined by the", "",
+                "non", "Presentation", "Transport", "Network");
+        QuestionModel question6 = new QuestionModel("An RFC is defined by the", "non",
                 "UN", "ANSI", "ISO", "IETF");
         QuestionModel question7 = new QuestionModel("a DNS server can return a different IP address for a given name, depending on whether the lookup specifies email or web service.", "No",
                 "ISO", "depends", "sometime", "true");
@@ -398,47 +481,47 @@ public class Quiz extends AppCompatActivity {
         QuestionModel question9 = new QuestionModel("What application layer protocol is commonly used to support for file transfers between a client and a server?", "telnet",
                 "presentation, data link, session, transport, network, physical, application", "HTML", "HTTP", "FTP");
         QuestionModel question10 = new QuestionModel("What is the proper order of the layers of the OSI model from the highest layer to the lowest layer?", "physical, network, application, data link, presentation, session, transport ",
-                "", " application, presentation, physical, session, data link, transport, network", "application, physical, session, transport, network, data link, presentation", "application, presentation, session, transport, network, data link, physical");
+                "non", " application, presentation, physical, session, data link, transport, network", "application, physical, session, transport, network, data link, presentation", "application, presentation, session, transport, network, data link, physical");
         QuestionModel question11 = new QuestionModel("TCP provides the stream transport and is a reliable transport service.", "false",
-                "", "", "", "true");
+                "non", "non", "non", "true");
         QuestionModel question12 = new QuestionModel("Suppose a client sends an HTTP request message with the If-modified-since:header. Suppose the object in a server has not changed since the last time a client retrieved the object. Then the server will send a response message with the status code:", "none of them ",
-                "", "404 Not Found ", "200 OK ", "304 Not Modified ");
+                "non", "404 Not Found ", "200 OK ", "304 Not Modified ");
         QuestionModel question13 = new QuestionModel("a multi-national company can choose to divide its domain name hierarchy in such a way that the company has a domain name server in Europe, one in Asia, and one in North America.", "false",
-                "", "", "", "true");
+                "non", "non", "non", "true");
         QuestionModel question14 = new QuestionModel("Which layer of the OSI 7 layer reference model has the same function as the TCP/IP model network interface layer?", "data link layer ",
-                "", "transport layer", "network layer", "session layer");
+                "non", "transport layer", "network layer", "session layer");
         QuestionModel question15 = new QuestionModel("Which of the following belongs to the presentation layer in the OSI model?", "TCP",
-                "", "  MIDI & JPEG ", "SSH", "HTTP");
+                "non", "  MIDI & JPEG ", "SSH", "HTTP");
         QuestionModel question16 = new QuestionModel("Encapsulation is the process of", "Taking headers off of data ",
-                "none of the answers given", "taking headers off of incoming info", "", "Adding headers to incoming information ");
+                "none of the answers given", "taking headers off of incoming info", "non", "Adding headers to incoming information ");
         QuestionModel question17 = new QuestionModel("Which of the following protocol(s) belong(s) to the transport layer?", "IP",
-                "SMTP", "HTTP", "", "TCP & UDP");
+                "SMTP", "HTTP", "non", "TCP & UDP");
         QuestionModel question18 = new QuestionModel("Layers four and five of the Internet protocol stack are implemented in the end systems but not in the routers in the network core.", "false",
-                "", "", "", "true");
+                "non", "non", "non", "true");
         QuestionModel question19 = new QuestionModel("What is the role of the OSI application layer?", "provides encryption and conversion of data ",
-                "provides control of all the data flowing between the source and destination devices", "provides segmentation of data ", "", "provides the interface between the applications on either end of the network");
+                "provides control of all the data flowing between the source and destination devices", "provides segmentation of data ", "non", "provides the interface between the applications on either end of the network");
         QuestionModel question20 = new QuestionModel("Given an URL of http://www.tec.hkr.se/moodle/index.html. What is the top-level domain of this URL?", "http://",
-                "", "moodle", "hkr.se ", "se");
+                "non", "moodle", "hkr.se ", "se");
         QuestionModel question21 = new QuestionModel("Protocol information is transferred with data in a", "character",
-                "", "", "", "header");
+                "non", "non", "non", "header");
         QuestionModel question22 = new QuestionModel("what protocol is used to transfer web pages from server to client?", "POP",
                 "HTML", "cable", "URL", "HTTP");
         QuestionModel question23 = new QuestionModel("Decapsulation is the process of", "Taking headers off of outgoing data ",
-                "", "Adding headers to outgoing information", " Adding headers to incoming information", "Taking headers off of incoming information");
+                "non", "Adding headers to outgoing information", " Adding headers to incoming information", "Taking headers off of incoming information");
         QuestionModel question24 = new QuestionModel("SMTP is used to", "to define the format of message headers ",
-                "", "to transfer messages from mail server to a user agent", "all of them", "to transfer messages from one mail server to another");
+                "non", "to transfer messages from mail server to a user agent", "all of them", "to transfer messages from one mail server to another");
         QuestionModel question25 = new QuestionModel("a web server must have a domain name that begins with www.", "true",
-                "", "", "", "false");
+                "non", "non", "non", "false");
         QuestionModel question26 = new QuestionModel("What is the primary purpose of Layer 4 port number?", "to identify devices on the local media ",
-                "to identify the source and destination end devices that are communicating", "to identify the hops between source and destination", "", "to identify the applications or services that are communicating within the end devices ");
+                "to identify the source and destination end devices that are communicating", "to identify the hops between source and destination", "non", "to identify the applications or services that are communicating within the end devices ");
         QuestionModel question27 = new QuestionModel("Which layer encapsulates the segment into packets?", "transport layer ",
-                "", "Internet layer ", "physical layer", "network interface layer");
+                "non", "Internet layer ", "physical layer", "network interface layer");
         QuestionModel question28 = new QuestionModel("What purpose do protocols serve in computer networking?", "Decide how computers perform internal processing",
-                "", "Decide who gets information first ", "Decide how fast computers can send and receive data", "Provide rules for communicating computers ");
+                "non", "Decide who gets information first ", "Decide how fast computers can send and receive data", "Provide rules for communicating computers ");
         QuestionModel question29 = new QuestionModel("UDP provides the message transport service. It is connectionless service.", "false",
-                "", "", "", "true");
+                "non", "non", "non", "true");
         QuestionModel question30 = new QuestionModel("The Internet is an example of", "a circuit network.",
-                "", "", "a radio signal based network. ", "a packet switched network. ");
+                "non", "non", "a radio signal based network. ", "a packet switched network. ");
         QuestionModel question31 = new QuestionModel("Why are port numbers included in the TCP header of a segment?", "to allow the receiving host to assemble the packet in the proper order",
                 "to identify which switch ports should receive or forward the segment", "to determine which Layer 3 protocol should be used to encapsulate the data", "to indicate the correct router interface that should be used to forward a segment", "to enable a receiving host to forward the data to the appropriate application");
         DcQuiz.add(question1);
@@ -474,6 +557,56 @@ public class Quiz extends AppCompatActivity {
         DcQuiz.add(question31);
     }
 
+    public void prepareOsQuiz() {
+        QuestionModel question1 = new QuestionModel("Which disk is used to cold boot a PC?", "System disk",
+                "non", "Diagnostic disk", "Program disk", "System disk");
+        QuestionModel question2 = new QuestionModel("What is the name of the program that controls the overall functions of computer?", "A browser",
+                "The file manager", "An application program", "non", " The operating system");
+        QuestionModel question3 = new QuestionModel("hich of the following is/are file extension(s) in DOS?", "COM",
+                "non", "BAT", "EXE", "All of these");
+        QuestionModel question4 = new QuestionModel("A process having multiple threads of control implies", "Only one thread per process to use",
+                "non", "Only one task at a time, but much faster", "All of the above", "More than one task at a time");
+        QuestionModel question5 = new QuestionModel("Which command is used to set a name to a disk in DOS?", "DISKLABEL",
+                "non", "VOL", "VOLUME", "LABEL");
+        QuestionModel question6 = new QuestionModel("What is the maximum length allowed for primary name of a computer file under DOS?", "3",
+                "non", "12", "8", "5");
+        QuestionModel question7 = new QuestionModel("Maximum length of DOS command using any optional parameter is", "26 characters",
+                "non", "156 characters", "87 characters", "127 characters");
+        QuestionModel question8 = new QuestionModel("Which command is used to clear the screen and display the operating system prompt on the first line of the display?", "Cd",
+                "non", "Rename", "Md", "Cls");
+        QuestionModel question9 = new QuestionModel("Delete directories", "skd, srbm",
+                "non", "all of these", "nd, ndi", "rd, rmdir");
+        QuestionModel question10 = new QuestionModel("The primarily takes care of the behind the scenes details and manages the hardware", "Hard disk",
+                "Peripheral devices", "Application software", "non", "Operating system");
+        QuestionModel question11 = new QuestionModel("The capabilities of the operating system is to enable two or more than two programs to execute simultaneously in a single computer system by a single processor is", "Multi-execution",
+                "non", "Multi-tasking", "Multi-processing", "Multi-programming");
+        QuestionModel question12 = new QuestionModel("While working with MS-DOS which command is used to more file from one directory to another?", "Cp",
+                "non", "Rename", "Copy", "Move");
+        QuestionModel question13 = new QuestionModel("Characteristics of an operating system is/are", "Error recovery",
+                "non", "Memory management", "Resource management", "All of the above");
+        QuestionModel question14 = new QuestionModel("To display the list of all the file on the disk you would type", "DIR AUTOEXEC.BAT",
+                "DIR FILES", "non", "COPY", "DIR");
+        QuestionModel question15 = new QuestionModel("Internal commands in DOS are", "non",
+                " Del, disk, copy, label", " Dir, ren, sys", "Cls, rd label", " Time, type, dir");
+
+        OsQuiz.add(question1);
+        OsQuiz.add(question2);
+        OsQuiz.add(question3);
+        OsQuiz.add(question4);
+        OsQuiz.add(question5);
+        OsQuiz.add(question6);
+        OsQuiz.add(question7);
+        OsQuiz.add(question8);
+        OsQuiz.add(question9);
+        OsQuiz.add(question10);
+        OsQuiz.add(question11);
+        OsQuiz.add(question12);
+        OsQuiz.add(question13);
+        OsQuiz.add(question14);
+        OsQuiz.add(question15);
+
+
+    }
 //    public String checkDigit(int number) {
 //        return number <= 9 ? "0" + number : String.valueOf(number);
 //    }

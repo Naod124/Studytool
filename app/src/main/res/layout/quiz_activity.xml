@@ -78,7 +78,8 @@
         app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/questionNum"
-        app:layout_constraintVertical_bias="0.621">
+        app:layout_constraintVertical_bias="0.621"
+        >
 
         <RadioButton
             android:id="@+id/choice1"
@@ -87,7 +88,8 @@
             android:background="@drawable/button_pressed"
             android:text="Option 1"
             android:textColor="@color/white"
-            android:textSize="17sp" />
+            android:textSize="17sp"
+            android:lines="4"/>
 
         <RadioButton
             android:id="@+id/choice2"
@@ -96,7 +98,8 @@
             android:background="@drawable/button_pressed"
             android:text="Option 2"
             android:textColor="@color/white"
-            android:textSize="17sp" />
+            android:textSize="17sp"
+            android:lines="4"/>
 
         <RadioButton
             android:id="@+id/choice3"
@@ -105,7 +108,9 @@
             android:background="@drawable/button_pressed"
             android:text="Option 3"
             android:textColor="@color/white"
-            android:textSize="17sp" />
+            android:textSize="17sp"
+            android:lines="4"/>
+
 
         <RadioButton
             android:id="@+id/choice4"
@@ -114,7 +119,8 @@
             android:background="@drawable/button_pressed"
             android:text="Option 4"
             android:textColor="@color/white"
-            android:textSize="17sp" />
+            android:textSize="17sp"
+            android:lines="4"/>
 
     </RadioGroup>
 
