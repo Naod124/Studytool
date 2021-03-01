@@ -37,7 +37,7 @@ public class Quiz extends AppCompatActivity {
     int scoreNum = 0;
     int position = 0;
     static int highScore = 0;
-    private final ArrayList<QuestionModel> dSQuiz = new ArrayList<>();
+    private final ArrayList<QuestionModel> DSQuiz = new ArrayList<>();
     private final ArrayList<QuestionModel> DcQuiz = new ArrayList<>();
     private final ArrayList<QuestionModel> OsQuiz = new ArrayList<>();
 
@@ -68,241 +68,91 @@ public class Quiz extends AppCompatActivity {
         nextQuestion.setEnabled(false);
         if (courseName.equals("Data Structure")) {
             prepareDsQuiz();
-            rightAnswer = dSQuiz.get(position).rightAnswer;
-            questionNum.setText("Questions : " + (position + 1) + "/" + dSQuiz.size());
-            question.setText(dSQuiz.get(position).question);
-            choice1.setText(dSQuiz.get(position).choice1);
-            choice2.setText(dSQuiz.get(position).choice2);
-            choice3.setText(dSQuiz.get(position).choice3);
-            choice4.setText(dSQuiz.get(position).rightAnswer);
-            radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
-                checkedButton = findViewById(checkedId);
-                if (checkedButton.getText().equals(dSQuiz.get(position).rightAnswer)) {
-                    nextQuestion.setEnabled(true);
-                    System.out.println(checkedButton.getId());
-                    if (choice1.getId() == checkedButton.getId()) {
-                        choice2.setBackground(disabledButton);
-                        choice3.setBackground(disabledButton);
-                        choice4.setBackground(disabledButton);
-                        choice2.setEnabled(false);
-                        choice3.setEnabled(false);
-                        choice4.setEnabled(false);
-                    } else if (choice2.getId() == checkedButton.getId()) {
-                        choice1.setBackground(disabledButton);
-                        choice3.setBackground(disabledButton);
-                        choice4.setBackground(disabledButton);
-                        choice1.setEnabled(false);
-                        choice3.setEnabled(false);
-                        choice4.setEnabled(false);
-                    } else if (choice3.getId() == checkedButton.getId()) {
-                        choice1.setBackground(disabledButton);
-                        choice2.setBackground(disabledButton);
-                        choice4.setBackground(disabledButton);
-                        choice1.setEnabled(false);
-                        choice2.setEnabled(false);
-                        choice4.setEnabled(false);
-                    } else if (choice4.getId() == checkedButton.getId()) {
-                        choice1.setBackground(disabledButton);
-                        choice2.setBackground(disabledButton);
-                        choice3.setBackground(disabledButton);
-                        choice1.setEnabled(false);
-                        choice2.setEnabled(false);
-                        choice3.setEnabled(false);
-                    }
-                    scoreNum++;
-                    countDownTimer.cancel();
-                    score.setText("Score : " + scoreNum);
-                    Toast.makeText(Quiz.this, "RightAnswer", Toast.LENGTH_SHORT).show();
+            createQuiz(DSQuiz);
+        } else if (courseName.equals("Data Communication")) {
+            prepareDcQuiz();
+            createQuiz(DcQuiz);
+        } else if (courseName.equals("Operating System")) {
+            prepareOsQuiz();
+            createQuiz(OsQuiz);
+        }
+
+    }
+
+    private void createQuiz(ArrayList<QuestionModel> courseQuiz) {
+        rightAnswer = courseQuiz.get(position).rightAnswer;
+        questionNum.setText("Questions : " + (position + 1) + "/" + courseQuiz.size());
+        question.setText(courseQuiz.get(position).question);
+        choice1.setText(courseQuiz.get(position).choice1);
+        choice2.setText(courseQuiz.get(position).choice2);
+        choice3.setText(courseQuiz.get(position).choice3);
+        choice4.setText(courseQuiz.get(position).rightAnswer);
+        radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
+            checkedButton = findViewById(checkedId);
+            if (checkedButton.getText().equals(courseQuiz.get(position).rightAnswer)) {
+                nextQuestion.setEnabled(true);
+                System.out.println(checkedButton.getId());
+                if (choice1.getId() == checkedButton.getId()) {
+                    choice2.setBackground(disabledButton);
+                    choice3.setBackground(disabledButton);
+                    choice4.setBackground(disabledButton);
+                    choice2.setEnabled(false);
+                    choice3.setEnabled(false);
+                    choice4.setEnabled(false);
+                } else if (choice2.getId() == checkedButton.getId()) {
+                    choice1.setBackground(disabledButton);
+                    choice3.setBackground(disabledButton);
+                    choice4.setBackground(disabledButton);
+                    choice1.setEnabled(false);
+                    choice3.setEnabled(false);
+                    choice4.setEnabled(false);
+                } else if (choice3.getId() == checkedButton.getId()) {
+                    choice1.setBackground(disabledButton);
+                    choice2.setBackground(disabledButton);
+                    choice4.setBackground(disabledButton);
+                    choice1.setEnabled(false);
+                    choice2.setEnabled(false);
+                    choice4.setEnabled(false);
+                } else if (choice4.getId() == checkedButton.getId()) {
+                    choice1.setBackground(disabledButton);
+                    choice2.setBackground(disabledButton);
+                    choice3.setBackground(disabledButton);
+                    choice1.setEnabled(false);
+                    choice2.setEnabled(false);
+                    choice3.setEnabled(false);
                 }
+                scoreNum++;
+                countDownTimer.cancel();
+                score.setText("Score : " + scoreNum);
+                Toast.makeText(Quiz.this, "RightAnswer", Toast.LENGTH_SHORT).show();
+            }
 
 
-            });
-            startTimer(dSQuiz);
-            nextQuestion.setOnClickListener(v -> {
-                if (position < dSQuiz.size() - 1) {
+        });
+        startTimer(courseQuiz);
+        nextQuestion.setOnClickListener(v -> {
+            if (position < courseQuiz.size() - 1) {
 //                    if (position >= dSQuiz.size()) {
 //                        alertDialog("Do you wanna repeat this quiz ?", "Quiz Complete");
 //                    }
-                    position++;
-                    questionNum.setText("Questions : " + (position + 1) + "/" + dSQuiz.size());
-                    choice1.setBackground(pressedButton);
-                    choice2.setBackground(pressedButton);
-                    choice3.setBackground(pressedButton);
-                    choice4.setBackground(pressedButton);
-                    enableAllChoices();
-                    question.setText(dSQuiz.get(position).question);
-                    choice1.setText(dSQuiz.get(position).choice1);
-                    choice2.setText(dSQuiz.get(position).choice2);
-                    choice3.setText(dSQuiz.get(position).choice3);
-                    choice4.setText(dSQuiz.get(position).choice4);
-                    nextQuestion.setEnabled(false);
-                    time = 10;
-                    countDownTimer.start();
+                position++;
+                questionNum.setText("Questions : " + (position + 1) + "/" + courseQuiz.size());
+                choice1.setBackground(pressedButton);
+                choice2.setBackground(pressedButton);
+                choice3.setBackground(pressedButton);
+                choice4.setBackground(pressedButton);
+                enableAllChoices();
+                question.setText(courseQuiz.get(position).question);
+                choice1.setText(courseQuiz.get(position).choice1);
+                choice2.setText(courseQuiz.get(position).choice2);
+                choice3.setText(courseQuiz.get(position).choice3);
+                choice4.setText(courseQuiz.get(position).choice4);
+                nextQuestion.setEnabled(false);
+                time = 10;
+                countDownTimer.start();
 
-                } else alertDialog();
-            });
-        }
-
-        else if (courseName.equals("Data Communication")) {
-
-            prepareDcQuiz();
-            rightAnswer = DcQuiz.get(position).rightAnswer;
-            questionNum.setText("Questions : " + (position +1) + "/" + DcQuiz.size());
-            question.setText(DcQuiz.get(position).question);
-            choice1.setText(DcQuiz.get(position).choice1);
-            choice2.setText(DcQuiz.get(position).choice2);
-            choice3.setText(DcQuiz.get(position).choice3);
-            choice4.setText(DcQuiz.get(position).rightAnswer);
-            radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
-                checkedButton = findViewById(checkedId);
-                if (checkedButton.getText().equals(DcQuiz.get(position).rightAnswer)) {
-                    nextQuestion.setEnabled(true);
-                    System.out.println(checkedButton.getId());
-                    if (choice1.getId() == checkedButton.getId()) {
-                        choice2.setBackground(disabledButton);
-                        choice3.setBackground(disabledButton);
-                        choice4.setBackground(disabledButton);
-                        choice2.setEnabled(false);
-                        choice3.setEnabled(false);
-                        choice4.setEnabled(false);
-                    } else if (choice2.getId() == checkedButton.getId()) {
-                        choice1.setBackground(disabledButton);
-                        choice3.setBackground(disabledButton);
-                        choice4.setBackground(disabledButton);
-                        choice1.setEnabled(false);
-                        choice3.setEnabled(false);
-                        choice4.setEnabled(false);
-                    } else if (choice3.getId() == checkedButton.getId()) {
-                        choice1.setBackground(disabledButton);
-                        choice2.setBackground(disabledButton);
-                        choice4.setBackground(disabledButton);
-                        choice1.setEnabled(false);
-                        choice2.setEnabled(false);
-                        choice4.setEnabled(false);
-                    } else if (choice4.getId() == checkedButton.getId()) {
-                        choice1.setBackground(disabledButton);
-                        choice2.setBackground(disabledButton);
-                        choice3.setBackground(disabledButton);
-                        choice1.setEnabled(false);
-                        choice2.setEnabled(false);
-                        choice3.setEnabled(false);
-                    }
-                    scoreNum++;
-                    countDownTimer.cancel();
-                    score.setText("Score : " + scoreNum);
-                    Toast.makeText(Quiz.this, "RightAnswer", Toast.LENGTH_SHORT).show();
-                }
-
-
-            });
-            startTimer(DcQuiz);
-            nextQuestion.setOnClickListener(v -> {
-                if (position < DcQuiz.size() - 1) {
-//                    if (position >= DcQuiz.size()) {
-//                        alertDialog("Do you wanna repeat this quiz ?", "Quiz Complete");
-//                    }
-                    position++;
-                    questionNum.setText("Questions : " + (position + 1) + "/" + DcQuiz.size());
-                    choice1.setBackground(pressedButton);
-                    choice2.setBackground(pressedButton);
-                    choice3.setBackground(pressedButton);
-                    choice4.setBackground(pressedButton);
-                    enableAllChoices();
-                    question.setText(DcQuiz.get(position).question);
-                    choice1.setText(DcQuiz.get(position).choice1);
-                    choice2.setText(DcQuiz.get(position).choice2);
-                    choice3.setText(DcQuiz.get(position).choice3);
-                    choice4.setText(DcQuiz.get(position).choice4);
-                    nextQuestion.setEnabled(false);
-                    time = 10;
-                    countDownTimer.start();
-
-                } else alertDialog();
-            });
-
-        }
-        else if (courseName.equals("Operating System")) {
-            prepareOsQuiz();
-            rightAnswer = OsQuiz.get(position).rightAnswer;
-            questionNum.setText("Questions : " + (position + 1) + "/" + OsQuiz.size());
-            question.setText(OsQuiz.get(position).question);
-            choice1.setText(OsQuiz.get(position).choice1);
-            choice2.setText(OsQuiz.get(position).choice2);
-            choice3.setText(OsQuiz.get(position).choice3);
-            choice4.setText(OsQuiz.get(position).rightAnswer);
-            radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @SuppressLint("SetTextI18n")
-                @Override
-                public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    checkedButton = findViewById(checkedId);
-                    if (checkedButton.getText().equals(OsQuiz.get(position).rightAnswer)) {
-                        nextQuestion.setEnabled(true);
-                        System.out.println(checkedButton.getId());
-                        if (choice1.getId() == checkedButton.getId()) {
-                            choice2.setBackground(disabledButton);
-                            choice3.setBackground(disabledButton);
-                            choice4.setBackground(disabledButton);
-                            choice2.setEnabled(false);
-                            choice3.setEnabled(false);
-                            choice4.setEnabled(false);
-                        } else if (choice2.getId() == checkedButton.getId()) {
-                            choice1.setBackground(disabledButton);
-                            choice3.setBackground(disabledButton);
-                            choice4.setBackground(disabledButton);
-                            choice1.setEnabled(false);
-                            choice3.setEnabled(false);
-                            choice4.setEnabled(false);
-                        } else if (choice3.getId() == checkedButton.getId()) {
-                            choice1.setBackground(disabledButton);
-                            choice2.setBackground(disabledButton);
-                            choice4.setBackground(disabledButton);
-                            choice1.setEnabled(false);
-                            choice2.setEnabled(false);
-                            choice4.setEnabled(false);
-                        } else if (choice4.getId() == checkedButton.getId()) {
-                            choice1.setBackground(disabledButton);
-                            choice2.setBackground(disabledButton);
-                            choice3.setBackground(disabledButton);
-                            choice1.setEnabled(false);
-                            choice2.setEnabled(false);
-                            choice3.setEnabled(false);
-                        }
-                        scoreNum++;
-                        countDownTimer.cancel();
-                        score.setText("Score : " + scoreNum);
-                        Toast.makeText(Quiz.this, "RightAnswer", Toast.LENGTH_SHORT).show();
-                    }
-
-
-                }
-            });
-            startTimer(OsQuiz);
-            nextQuestion.setOnClickListener(v -> {
-                if (position < OsQuiz.size() - 1) {
-//                    if (position >= OsQuiz.size()) {
-//                        alertDialog("Do you wanna repeat this quiz ?", "Quiz Complete");
-//                    }
-                    position++;
-                    questionNum.setText("Questions : " + (position + 1) + "/" + OsQuiz.size());
-                    choice1.setBackground(pressedButton);
-                    choice2.setBackground(pressedButton);
-                    choice3.setBackground(pressedButton);
-                    choice4.setBackground(pressedButton);
-                    enableAllChoices();
-                    question.setText(OsQuiz.get(position).question);
-                    choice1.setText(OsQuiz.get(position).choice1);
-                    choice2.setText(OsQuiz.get(position).choice2);
-                    choice3.setText(OsQuiz.get(position).choice3);
-                    choice4.setText(OsQuiz.get(position).choice4);
-                    nextQuestion.setEnabled(false);
-                    time = 10;
-                    countDownTimer.start();
-
-                } else alertDialog();
-            });
-        }
-
-
+            } else alertDialog();
+        });
     }
 
     private void startTimer(ArrayList<QuestionModel> myQuiz) {
@@ -431,27 +281,27 @@ public class Quiz extends AppCompatActivity {
                 " bubble sort", "merge sort", "quick sort", "Insertion sort", "Insertion sort");
         QuestionModel question21 = new QuestionModel("The running time of quick sort largely depends on",
                 "arrangement of elements", "size of element ", "number of inputs", "selection of pivot element ", "selection of pivot element ");
-        dSQuiz.add(question1);
-        dSQuiz.add(question2);
-        dSQuiz.add(question3);
-        dSQuiz.add(question4);
-        dSQuiz.add(question5);
-        dSQuiz.add(question6);
-        dSQuiz.add(question7);
-        dSQuiz.add(question8);
-        dSQuiz.add(question9);
-        dSQuiz.add(question10);
-        dSQuiz.add(question11);
-        dSQuiz.add(question12);
-        dSQuiz.add(question13);
-        dSQuiz.add(question14);
-        dSQuiz.add(question15);
-        dSQuiz.add(question16);
-        dSQuiz.add(question17);
-        dSQuiz.add(question18);
-        dSQuiz.add(question19);
-        dSQuiz.add(question20);
-        dSQuiz.add(question21);
+        DSQuiz.add(question1);
+        DSQuiz.add(question2);
+        DSQuiz.add(question3);
+        DSQuiz.add(question4);
+        DSQuiz.add(question5);
+        DSQuiz.add(question6);
+        DSQuiz.add(question7);
+        DSQuiz.add(question8);
+        DSQuiz.add(question9);
+        DSQuiz.add(question10);
+        DSQuiz.add(question11);
+        DSQuiz.add(question12);
+        DSQuiz.add(question13);
+        DSQuiz.add(question14);
+        DSQuiz.add(question15);
+        DSQuiz.add(question16);
+        DSQuiz.add(question17);
+        DSQuiz.add(question18);
+        DSQuiz.add(question19);
+        DSQuiz.add(question20);
+        DSQuiz.add(question21);
     }
 
     public void prepareDcQuiz() {
@@ -459,7 +309,7 @@ public class Quiz extends AppCompatActivity {
         QuestionModel question1 = new QuestionModel("Local DNS name servers", "obtain resource records from Web caches",
                 "cache resource records and never discard them ", "never cache resource records", "cache resource records, but discard them after a period of time that is on the order of a few days", "cache resource records, but discard them after a period of time that is on the order of a few days");
         QuestionModel question2 = new QuestionModel("Which application layer protocol correctly match a corresponding function?", "SMTP supports file sharing",
-                "DNS dynamically allocates IP addresses to hosts","HTTP transfers data from a web server to a client", "POP delivers email from the client to the email server",  "HTTP transfers data from a web server to a client ");
+                "DNS dynamically allocates IP addresses to hosts", "HTTP transfers data from a web server to a client", "POP delivers email from the client to the email server", "HTTP transfers data from a web server to a client ");
         QuestionModel question3 = new QuestionModel("Which protocol is used to control the transfer of web resources from a web server to a client browser?", "TCP",
                 "HTML", "HTTP", "IP", "HTTP");
         QuestionModel question4 = new QuestionModel("What IS NOT protocols operate at the Application layer of the OSI model?", "HTTP",
@@ -561,7 +411,7 @@ public class Quiz extends AppCompatActivity {
         QuestionModel question4 = new QuestionModel("A process having multiple threads of control implies", "Only one thread per process to use",
                 "More than one task at a time", "Only one task at a time, but much faster", "All of the above", "More than one task at a time");
         QuestionModel question5 = new QuestionModel("Which command is used to set a name to a disk in DOS?", "DISKLABEL",
-                 "VOL", "VOLUME","LABEL", "LABEL");
+                "VOL", "VOLUME", "LABEL", "LABEL");
         QuestionModel question6 = new QuestionModel("What is the maximum length allowed for primary name of a computer file under DOS?", "3",
                 "5", "12", "8", "5");
         QuestionModel question7 = new QuestionModel("Maximum length of DOS command using any optional parameter is", "26 characters",
@@ -575,7 +425,7 @@ public class Quiz extends AppCompatActivity {
         QuestionModel question11 = new QuestionModel("The capabilities of the operating system is to enable two or more than two programs to execute simultaneously in a single computer system by a single processor is", "Multi-execution",
                 "Multi-programming", "Multi-tasking", "Multi-processing", "Multi-programming");
         QuestionModel question12 = new QuestionModel("While working with MS-DOS which command is used to more file from one directory to another?", "Cp",
-                "Rename", "Copy","Move",  "Move");
+                "Rename", "Copy", "Move", "Move");
         QuestionModel question13 = new QuestionModel("Characteristics of an operating system is/are", "Error recovery",
                 "All of the above", "Memory management", "Resource management", "All of the above");
         QuestionModel question14 = new QuestionModel("To display the list of all the file on the disk you would type", "DIR AUTOEXEC.BAT",
