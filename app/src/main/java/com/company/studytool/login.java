@@ -204,6 +204,11 @@ This will add quiz to DB
     }
 
 
+    public void forgotPassword(View view) {
+        startActivity(new Intent(login.this, ForgotPassword.class));
+
+        
+    }
 }
 
 

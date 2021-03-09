@@ -67,4 +67,21 @@
         android:textSize="20sp"
         android:layout_marginTop="30sp"
         />
+
+    <TextView
+        android:id="@+id/sign_up_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="forgotPassword"
+        android:shadowColor="@color/hkrGreen"
+        android:text="Forgot Password "
+        android:textColor="@color/hkrDarkGreen"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView" />
+
 </LinearLayout>

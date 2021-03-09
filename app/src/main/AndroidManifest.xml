@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.company.studytool">
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
 
     <application
         android:allowBackup="true"
@@ -9,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Studytool">
-        <activity android:name=".privateMessage"></activity>
+        <activity android:name=".ForgotPassword"></activity>
+        <activity android:name=".privateMessage" />
         <activity android:name=".StudentList" />
         <activity android:name=".TruthTable" />
         <activity android:name=".DigitalVideo" />

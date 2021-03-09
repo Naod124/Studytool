@@ -18,17 +18,24 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.creativityapps.gmailbackgroundlibrary.BackgroundMail;
 import com.firebase.client.Firebase;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Objects;
+import java.util.Random;
 import java.util.regex.Pattern;
 
 public class
 Register extends AppCompatActivity {
+
+    Random rand = new Random();
+
+    int randomCode = rand.nextInt(999999);
 
     private static final Pattern PASSWORD_PATTERN =
             Pattern.compile("^" +
@@ -56,10 +63,13 @@ Register extends AppCompatActivity {
             "at least 1 special character\n" +
             "at least 4 characters\n" +
             "no white spaces";
-    TextInputLayout username, password, email;
+    TextInputLayout username, password;
     Button registerButton;
     String user, pass, Email;
     TextView login;
+
+    TextInputEditText email ;
+
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
@@ -68,8 +78,8 @@ Register extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         username = (TextInputLayout) findViewById(R.id.username);
         password = (TextInputLayout) findViewById(R.id.password);
-        email = (TextInputLayout) findViewById(R.id.email);
-        registerButton = (Button) findViewById(R.id.groupchat);
+        email =  findViewById(R.id.email);
+        registerButton = (Button) findViewById(R.id.Confirm);
         login = (TextView) findViewById(R.id.login);
         Firebase.setAndroidContext(this);
 
@@ -85,7 +95,7 @@ Register extends AppCompatActivity {
             public void onClick(View v) {
                 user = Objects.requireNonNull(username.getEditText()).getText().toString().trim();
                 pass = Objects.requireNonNull(password.getEditText()).getText().toString().trim();
-                Email = Objects.requireNonNull(email.getEditText()).getText().toString().trim();
+                Email = Objects.requireNonNull(email.getText().toString().trim());
 
                 if (user.isEmpty()) {
                     username.setError("It is empty");
@@ -101,10 +111,11 @@ Register extends AppCompatActivity {
                 } /*else if (!PASSWORD_PATTERN.matcher(pass).matches()) {
                     password.setError(passRules);
 
-                }*/ else if (!Email_PATTERN.matcher(Email).matches()) {
+                }*//* else if (!Email_PATTERN.matcher(Email).matches()) {
 //                } else if (!(Email.matches("^([\\w-\\.]+){1,64}@([\\w&&[^_]]+){2,255}.[a-z]{2,}$"))) {
                     email.setError("The format of email is not correct");
-                } else {
+                }
+                 */else {
                     final ProgressDialog pd = new ProgressDialog(Register.this);
                     pd.setMessage("Loading...");
                     pd.show();
@@ -122,20 +133,25 @@ Register extends AppCompatActivity {
                             } else {
                                 try {
                                     JSONObject obj = new JSONObject(s);
-
-                                    if (!obj.has(user)) {
-                                        reference.child(user).child("Password").setValue(pass);
-                                        reference.child(user).child("Email").setValue(Email);
-                                        Toast.makeText(Register.this, "registration successful", Toast.LENGTH_LONG).show();
-                                        username.getEditText().getText().clear();
-                                        password.getEditText().getText().clear();
-                                        email.getEditText().getText().clear();
-                                        Intent intent = new Intent(Register.this, com.company.studytool.login.class);
-                                        startActivity(intent);
-                                    } else {
-                                        Toast.makeText(Register.this, "username already exists", Toast.LENGTH_LONG).show();
+                                    TextInputEditText verify = findViewById(R.id.verifyCode);
+                                    int verifyCode = Integer.parseInt(verify.getText().toString());
+                                    if (verifyCode==randomCode) {
+                                        if (!obj.has(user)) {
+                                            reference.child(user).child("Password").setValue(pass);
+                                            reference.child(user).child("Email").setValue(Email);
+                                            Toast.makeText(Register.this, "registration successful", Toast.LENGTH_LONG).show();
+                                            username.getEditText().getText().clear();
+                                            password.getEditText().getText().clear();
+                                            email.getText().clear();
+                                            Intent intent = new Intent(Register.this, com.company.studytool.login.class);
+                                            startActivity(intent);
+                                        } else {
+                                            Toast.makeText(Register.this, "username already exists", Toast.LENGTH_LONG).show();
+                                        }
                                     }
-
+                                    else{
+                                        verify.setError("The code does not match with what it was sent");
+                                    }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
@@ -157,7 +173,41 @@ Register extends AppCompatActivity {
             }
         });
 
+        Button sendButton = findViewById(R.id.sendButton);
+
+        sendButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BackgroundMail.newBuilder(Register.this)
+                        .withUsername("confirmstudytool@gmail.com")
+                        .withPassword("study_tool10")
+                        // .withSenderName("")
+                        .withMailTo(email.getText().toString())
+                        //.withMailCc("cc-email@gmail.com")
+                        //.withMailBcc("bcc-email@gmail.com")
+                        .withType(BackgroundMail.TYPE_PLAIN)
+                        .withSubject("Confirmation code")
+                        .withBody("Your confirmation code is " + randomCode)
+                        //.withAttachments(Environment.getExternalStorageDirectory().getPath() + "/test.txt")
+                        //.withSendingMessage(R.string.sending_email)
+                        .withOnSuccessCallback(new BackgroundMail.OnSendingCallback() {
+                            @Override
+                            public void onSuccess() {
+                                // do some magic
+                            }
+
+                            @Override
+                            public void onFail(Exception e) {
+                                // do some magic
+                            }
+                        })
+                        .send();
+                Toast.makeText(Register.this, "Mail sent", Toast.LENGTH_LONG).show();
+            }
+
+        });
+
+        }
     }
 
 
-}
