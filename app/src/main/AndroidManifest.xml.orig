@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.company.studytool">
-
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
 
     <application
         android:allowBackup="true"
@@ -12,57 +12,36 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Studytool">
-
+<<<<<<< HEAD
         <activity
             android:name=".MyToDoList"
             android:launchMode="singleTop" />
-
         <activity
             android:name=".AddNodeActivity"
             android:parentActivityName=".MyToDoList" />
-
+=======
+        <activity android:name=".ForgotPassword"></activity>
+>>>>>>> a7affc174b12adfc8451ff47cb4bbfdfe19e8384
         <activity android:name=".privateMessage" />
-
         <activity android:name=".StudentList" />
-        <activity android:name=".ForgotPassword" />
         <activity android:name=".TruthTable" />
-
         <activity android:name=".DigitalVideo" />
-
         <activity android:name=".SelectedCourseActivity" />
-
         <activity android:name=".Courses" />
-
-
         <activity android:name=".MainActivity">
-
-
             <intent-filter>
-
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-
             </intent-filter>
-
         </activity>
-
         <activity android:name=".PracticeActivity" />
-
         <activity android:name=".ShowScoreActivity" />
-
-        <activity android:name=".DigitalBook" />
-
-        <activity android:name=".login" />
-
-        <activity android:name=".Menu" />
-
-        <activity android:name=".Register" />
-
-        <activity android:name=".Quiz" />
-
+        <activity android:name=".DigitalBook"/>
+        <activity android:name=".login"/>
+        <activity android:name=".Menu"/>
+        <activity android:name=".Register"/>
+        <activity android:name=".Quiz"/>
     </application>
 
 </manifest>
-
-
