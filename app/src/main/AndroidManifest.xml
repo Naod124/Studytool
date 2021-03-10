@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.company.studytool">
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
 
     <application
         android:allowBackup="true"
@@ -8,13 +11,14 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Studytool">
+	    android:theme="@style/Theme.Studytool"/>
         <activity
             android:name=".MyToDoList"
             android:launchMode="singleTop" />
         <activity
             android:name=".AddNodeActivity"
             android:parentActivityName=".MyToDoList" />
+        <activity android:name=".ForgotPassword"></activity>
         <activity android:name=".privateMessage" />
         <activity android:name=".StudentList" />
         <activity android:name=".TruthTable" />
