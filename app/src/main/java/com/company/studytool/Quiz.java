@@ -460,7 +460,7 @@ public class Quiz extends AppCompatActivity {
 //        return number <= 9 ? "0" + number : String.valueOf(number);
 //    }
 public static void saveScore(int number,String filePath) {
-    File log = new File("src\\main\\res\\"+filePath+".txt");
+    File log = new File("src\\main\\java\\com\\company\\studytool\\txtfile\\"+filePath+".txt");
     try{
         if(log.exists()==false){
                 System.out.println("We had to make a new file.");
@@ -477,7 +477,7 @@ public static void saveScore(int number,String filePath) {
 
     public static ArrayList<Integer> getScore(String filePath) throws IOException {
         ArrayList<Integer> scores = new ArrayList<Integer>();
-        BufferedReader in = new BufferedReader(new FileReader("src\\main\\res\\"+filePath+".txt"));
+        BufferedReader in = new BufferedReader(new FileReader("src\\main\\java\\com\\company\\studytool\\txtfile\\"+filePath+".txt"));
         String line;
 
         while((line = in.readLine()) != null){
