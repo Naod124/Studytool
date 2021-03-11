@@ -21,6 +21,7 @@ public class RecyclerViewAdabter extends RecyclerView.Adapter<RecyclerViewAdabte
         this.description = description;
     }
 
+
     public RecyclerViewAdabter(Context context, String[] questions, String[] answers, int[] rightAnswer) {
         this.rightAnswer = rightAnswer;
         this.answers = answers;

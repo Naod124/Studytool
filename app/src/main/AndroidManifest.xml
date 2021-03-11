@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.company.studytool">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/newicone_launcher_round"
@@ -9,7 +11,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Studytool">
-        <activity android:name=".privateMessage"></activity>
+        <activity android:name=".YoutubeViewHolder"></activity>
+        <activity android:name=".YoutubeAdapter" />
+        <activity android:name=".VideoFullScreen" />
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <activity android:name=".Facebook" />
+        <activity android:name=".privateMessage" />
         <activity android:name=".StudentList" />
         <activity android:name=".TruthTable" />
         <activity android:name=".DigitalVideo" />
@@ -29,6 +40,11 @@
         <activity android:name=".Menu" />
         <activity android:name=".Register" />
         <activity android:name=".Quiz" />
+
+        <provider
+            android:name="com.facebook.FacebookContentProvider"
+            android:authorities="com.facebook.app.FacebookContentProvider181738426848830"
+            android:exported="true" />
     </application>
 
 </manifest>
