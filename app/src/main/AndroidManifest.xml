@@ -4,7 +4,6 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/newicone_launcher_round"
@@ -23,6 +22,16 @@
 
         <activity android:name=".privateMessage" />
 
+        <activity android:name=".YoutubeViewHolder"></activity>
+        <activity android:name=".YoutubeAdapter" />
+        <activity android:name=".VideoFullScreen" />
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <activity android:name=".Facebook" />
+        <activity android:name=".privateMessage" />
         <activity android:name=".StudentList" />
         <activity android:name=".ForgotPassword" />
         <activity android:name=".TruthTable" />
@@ -61,6 +70,10 @@
 
         <activity android:name=".Quiz" />
 
+        <provider
+            android:name="com.facebook.FacebookContentProvider"
+            android:authorities="com.facebook.app.FacebookContentProvider181738426848830"
+            android:exported="true" />
     </application>
 
 </manifest>
