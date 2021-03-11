@@ -10,9 +10,15 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.IOException;
+import java.util.Collections;
+
+import static com.company.studytool.Quiz.getScore;
+
 public class ShowScoreActivity extends AppCompatActivity {
     TextView score;
     Button done;
+    String courseName = "";
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -21,10 +27,17 @@ public class ShowScoreActivity extends AppCompatActivity {
         setContentView(R.layout.show_score_activity);
         score = findViewById(R.id.scoreView);
         done = findViewById(R.id.done);
+
         Intent intent = getIntent();
         String scoreConverted = intent.getStringExtra("score");
+        courseName = intent.getStringExtra("course");
+
         System.out.println(scoreConverted);
-        score.setText("You high score " + scoreConverted);
+        try {
+            score.setText("Your high score " + Collections.max(getScore(courseName)));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         done.setOnClickListener(new View.OnClickListener() {
             @Override

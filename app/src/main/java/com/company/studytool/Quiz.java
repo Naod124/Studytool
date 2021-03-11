@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.view.View;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -17,7 +16,12 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.math.BigDecimal;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class Quiz extends AppCompatActivity {
@@ -181,6 +185,7 @@ public class Quiz extends AppCompatActivity {
     }
 
     private void alertDialog() {
+        saveScore(scoreNum,courseName);
         AlertDialog alertDialog = new AlertDialog.Builder(Quiz.this)
                 .setMessage("Do you wanna repeat this quiz ?").setTitle("Quiz Complete").setPositiveButton("yes", new DialogInterface.OnClickListener() {
                     @Override
@@ -454,6 +459,33 @@ public class Quiz extends AppCompatActivity {
 //    public String checkDigit(int number) {
 //        return number <= 9 ? "0" + number : String.valueOf(number);
 //    }
-
+public static void saveScore(int number,String filePath) {
+    File log = new File("src\\main\\res\\"+filePath+".txt");
+    try{
+        if(log.exists()==false){
+                System.out.println("We had to make a new file.");
+            log.createNewFile();
+        }
+        PrintWriter out = new PrintWriter(new FileWriter(log, true));
+        out.append( number  + "\n");
+        out.close();
+    }catch(IOException e){
+        System.out.println("COULD NOT LOG!!");
+    }
 
 }
+
+    public static ArrayList<Integer> getScore(String filePath) throws IOException {
+        ArrayList<Integer> scores = new ArrayList<Integer>();
+        BufferedReader in = new BufferedReader(new FileReader("src\\main\\res\\"+filePath+".txt"));
+        String line;
+
+        while((line = in.readLine()) != null){
+            scores.add(Integer.parseInt(line));
+        }
+        in.close();
+        return scores;
+    }
+}
+
+
