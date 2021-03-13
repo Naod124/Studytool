@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.view.View;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -17,7 +16,18 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.math.BigDecimal;
+import java.io.BufferedReader;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+
+import java.io.IOException;
+
+import java.io.InputStreamReader;
+import java.io.PrintStream;
 import java.util.ArrayList;
 
 public class Quiz extends AppCompatActivity {
@@ -40,7 +50,6 @@ public class Quiz extends AppCompatActivity {
     private final ArrayList<QuestionModel> DSQuiz = new ArrayList<>();
     private final ArrayList<QuestionModel> DcQuiz = new ArrayList<>();
     private final ArrayList<QuestionModel> OsQuiz = new ArrayList<>();
-
     String courseName = "";
     Drawable pressedButton;
     Drawable disabledButton;
@@ -65,16 +74,21 @@ public class Quiz extends AppCompatActivity {
         score = findViewById(R.id.score);
         Intent intent = getIntent();
         courseName = intent.getStringExtra("course");
+        StudentDetails.setCurrentCourse(courseName);
         nextQuestion.setEnabled(false);
-        if (courseName.equals("Data Structure")) {
-            prepareDsQuiz();
-            createQuiz(DSQuiz);
-        } else if (courseName.equals("Data Communication")) {
-            prepareDcQuiz();
-            createQuiz(DcQuiz);
-        } else if (courseName.equals("Operating System")) {
-            prepareOsQuiz();
-            createQuiz(OsQuiz);
+        switch (courseName) {
+            case "Data Structure":
+                prepareDsQuiz();
+                createQuiz(DSQuiz);
+                break;
+            case "Data Communication":
+                prepareDcQuiz();
+                createQuiz(DcQuiz);
+                break;
+            case "Operating System":
+                prepareOsQuiz();
+                createQuiz(OsQuiz);
+                break;
         }
 
     }
@@ -135,6 +149,10 @@ public class Quiz extends AppCompatActivity {
 //                    if (position >= dSQuiz.size()) {
 //                        alertDialog("Do you wanna repeat this quiz ?", "Quiz Complete");
 //                    }
+                choice1.setChecked(false);
+                choice2.setChecked(false);
+                choice3.setChecked(false);
+                choice4.setChecked(false);
                 position++;
                 questionNum.setText("Questions : " + (position + 1) + "/" + courseQuiz.size());
                 choice1.setBackground(pressedButton);
@@ -151,7 +169,13 @@ public class Quiz extends AppCompatActivity {
                 time = 10;
                 countDownTimer.start();
 
-            } else alertDialog();
+            } else {
+                try {
+                    alertDialog();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
         });
     }
 
@@ -180,7 +204,8 @@ public class Quiz extends AppCompatActivity {
         }.start();
     }
 
-    private void alertDialog() {
+    private void alertDialog() throws FileNotFoundException {
+        saveScore(scoreNum, courseName);
         AlertDialog alertDialog = new AlertDialog.Builder(Quiz.this)
                 .setMessage("Do you wanna repeat this quiz ?").setTitle("Quiz Complete").setPositiveButton("yes", new DialogInterface.OnClickListener() {
                     @Override
@@ -451,9 +476,27 @@ public class Quiz extends AppCompatActivity {
 
 
     }
-//    public String checkDigit(int number) {
+
+    //    public String checkDigit(int number) {
 //        return number <= 9 ? "0" + number : String.valueOf(number);
 //    }
+    public void saveScore(int number, String filePath) {
+        File directory  = getFilesDir();
+        directory .mkdirs();
+        File file = new File(directory ,filePath+".txt");
+        try {
+            FileOutputStream fos = new FileOutputStream(file, true);
+
+            PrintStream printstream = new PrintStream(fos);
+            printstream.print(number + "\n");
+            fos.close();
+        } catch (Exception e) {
+            Toast.makeText(Quiz.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+
+    }
 
 
 }
+
+
