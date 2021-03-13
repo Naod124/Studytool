@@ -17,11 +17,15 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.BufferedReader;
-import java.io.File;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
-import java.io.FileWriter;
+
 import java.io.IOException;
-import java.io.PrintWriter;
+
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class Quiz extends AppCompatActivity {
@@ -44,7 +48,6 @@ public class Quiz extends AppCompatActivity {
     private final ArrayList<QuestionModel> DSQuiz = new ArrayList<>();
     private final ArrayList<QuestionModel> DcQuiz = new ArrayList<>();
     private final ArrayList<QuestionModel> OsQuiz = new ArrayList<>();
-
     String courseName = "";
     Drawable pressedButton;
     Drawable disabledButton;
@@ -70,15 +73,19 @@ public class Quiz extends AppCompatActivity {
         Intent intent = getIntent();
         courseName = intent.getStringExtra("course");
         nextQuestion.setEnabled(false);
-        if (courseName.equals("Data Structure")) {
-            prepareDsQuiz();
-            createQuiz(DSQuiz);
-        } else if (courseName.equals("Data Communication")) {
-            prepareDcQuiz();
-            createQuiz(DcQuiz);
-        } else if (courseName.equals("Operating System")) {
-            prepareOsQuiz();
-            createQuiz(OsQuiz);
+        switch (courseName) {
+            case "Data Structure":
+                prepareDsQuiz();
+                createQuiz(DSQuiz);
+                break;
+            case "Data Communication":
+                prepareDcQuiz();
+                createQuiz(DcQuiz);
+                break;
+            case "Operating System":
+                prepareOsQuiz();
+                createQuiz(OsQuiz);
+                break;
         }
 
     }
@@ -155,7 +162,13 @@ public class Quiz extends AppCompatActivity {
                 time = 10;
                 countDownTimer.start();
 
-            } else alertDialog();
+            } else {
+                try {
+                    alertDialog();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
         });
     }
 
@@ -184,8 +197,8 @@ public class Quiz extends AppCompatActivity {
         }.start();
     }
 
-    private void alertDialog() {
-        saveScore(scoreNum,courseName);
+    private void alertDialog() throws FileNotFoundException {
+        saveScore(scoreNum, courseName);
         AlertDialog alertDialog = new AlertDialog.Builder(Quiz.this)
                 .setMessage("Do you wanna repeat this quiz ?").setTitle("Quiz Complete").setPositiveButton("yes", new DialogInterface.OnClickListener() {
                     @Override
@@ -456,36 +469,34 @@ public class Quiz extends AppCompatActivity {
 
 
     }
-//    public String checkDigit(int number) {
+
+    //    public String checkDigit(int number) {
 //        return number <= 9 ? "0" + number : String.valueOf(number);
 //    }
-public static void saveScore(int number,String filePath) {
-    File log = new File("src\\main\\java\\com\\company\\studytool\\txtfile\\"+filePath+".txt");
-    try{
-        if(log.exists()==false){
-                System.out.println("We had to make a new file.");
-            log.createNewFile();
+    public void saveScore(int number, String filePath) throws FileNotFoundException {
+        int text = number;
+        FileOutputStream fos = null;
+        try {
+            fos = openFileOutput(filePath+".txt", MODE_PRIVATE);
+            fos.write(text);
+
+            Toast.makeText(this, "Saved to " + getFilesDir() + "/" + filePath+".txt",
+                    Toast.LENGTH_LONG).show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (fos != null) {
+                try {
+                    fos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
-        PrintWriter out = new PrintWriter(new FileWriter(log, true));
-        out.append( number  + "\n");
-        out.close();
-    }catch(IOException e){
-        System.out.println("COULD NOT LOG!!");
+
     }
 
-}
 
-    public static ArrayList<Integer> getScore(String filePath) throws IOException {
-        ArrayList<Integer> scores = new ArrayList<Integer>();
-        BufferedReader in = new BufferedReader(new FileReader("src\\main\\java\\com\\company\\studytool\\txtfile\\"+filePath+".txt"));
-        String line;
-
-        while((line = in.readLine()) != null){
-            scores.add(Integer.parseInt(line));
-        }
-        in.close();
-        return scores;
-    }
 }
 
 
