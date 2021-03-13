@@ -105,7 +105,6 @@ public class Quiz extends AppCompatActivity {
             checkedButton = findViewById(checkedId);
             if (checkedButton.getText().equals(courseQuiz.get(position).rightAnswer)) {
                 nextQuestion.setEnabled(true);
-                System.out.println(checkedButton.getId());
                 if (choice1.getId() == checkedButton.getId()) {
                     choice2.setBackground(disabledButton);
                     choice3.setBackground(disabledButton);

@@ -23,14 +23,19 @@ public class DigitalBook extends AppCompatActivity {
         Intent intent = getIntent();
         courseName = intent.getStringExtra("course");
         pdfView = (PDFView) findViewById(R.id.pdf);
-        if (courseName.equals("Digital System Design")) {
-            pdfView.fromAsset("digital-systems-design.pdf").load();
-        } else if (courseName.equals("Data Structure")) {
-            pdfView.fromAsset("Data_Structures_Algorithm.pdf").load();
-        } else if (courseName.equals("Data Communication")) {
-            pdfView.fromAsset("Computer_Networks_and_Internets.pdf").load();
-        } else if (courseName.equals("Operating System")) {
-            pdfView.fromAsset("operating-system-concepts.pdf").load();
+        switch (courseName) {
+            case "Digital System Design":
+                pdfView.fromAsset("digital-systems-design.pdf").load();
+                break;
+            case "Data Structure":
+                pdfView.fromAsset("Data_Structures_Algorithm.pdf").load();
+                break;
+            case "Data Communication":
+                pdfView.fromAsset("Computer_Networks_and_Internets.pdf").load();
+                break;
+            case "Operating System":
+                pdfView.fromAsset("operating-system-concepts.pdf").load();
+                break;
         }
         text = findViewById(R.id.txtview);
         Button button1 = findViewById(R.id.buttn);

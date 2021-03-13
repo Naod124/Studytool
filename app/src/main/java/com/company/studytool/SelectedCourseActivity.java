@@ -27,15 +27,19 @@ public class SelectedCourseActivity extends AppCompatActivity {
         if (courseName.getText().equals("Data Structure")) {
             book1.setOnClickListener(v -> startActivity(new Intent(SelectedCourseActivity.this, DigitalBook.class).putExtra("course", "Data Structure")));
             practise.setOnClickListener(v -> startActivity(new Intent(SelectedCourseActivity.this, PracticeActivity.class).putExtra("course", "Data Structure")));
+            video1.setOnClickListener(v -> startActivity(new Intent(SelectedCourseActivity.this, DigitalVideo.class).putExtra("course", "Data Structure")));
         } else if (courseName.getText().equals("Data Communication")) {
             book1.setOnClickListener(v -> startActivity(new Intent(SelectedCourseActivity.this, DigitalBook.class).putExtra("course", "Data Communication")));
             practise.setOnClickListener(v -> startActivity(new Intent(SelectedCourseActivity.this, PracticeActivity.class).putExtra("course", "Data Communication")));
+            video1.setOnClickListener(v -> startActivity(new Intent(SelectedCourseActivity.this, DigitalVideo.class).putExtra("course", "Data Communication")));
         } else if (courseName.getText().equals("Operating System")) {
             book1.setOnClickListener(v -> startActivity(new Intent(SelectedCourseActivity.this, DigitalBook.class).putExtra("course", "Operating System")));
             practise.setOnClickListener(v -> startActivity(new Intent(SelectedCourseActivity.this, PracticeActivity.class).putExtra("course", "Operating System")));
+            video1.setOnClickListener(v -> startActivity(new Intent(SelectedCourseActivity.this, DigitalVideo.class).putExtra("course", "Operating System")));
         } else if (courseName.getText().equals("Digital System Design")) {
             book1.setOnClickListener(v -> startActivity(new Intent(SelectedCourseActivity.this, DigitalBook.class).putExtra("course", "Digital System Design")));
             practise.setOnClickListener(v -> startActivity(new Intent(SelectedCourseActivity.this, PracticeActivity.class).putExtra("course", "Digital System Design")));
+            video1.setOnClickListener(v -> startActivity(new Intent(SelectedCourseActivity.this, DigitalVideo.class).putExtra("course", "Digital System Design")));
         }
     }
 

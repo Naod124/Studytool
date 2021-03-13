@@ -38,4 +38,24 @@
     <string name="facebook_login_protocol_scheme">fb181738426848830</string>
     <string name="save">Save</string>
     <string name="delete_all">Delete All</string>
+    <string-array name="YoutubeVideos">
+
+    </string-array>
+    <string-array name="DsVideos">
+
+    </string-array>
+    <string-array name="DcVideos">
+
+    </string-array>
+    <string-array name="OsVideos">
+
+    </string-array>
+    <string-array name="DdVideos">
+        <item>https://www.youtube.com/embed/Z6Nds10n7rs</item>
+        <item>https://www.youtube.com/embed/aLUY-s7LSns</item>
+        <item>https://www.youtube.com/embed/RK3P9L2ZXk4</item>
+        <item>https://www.youtube.com/embed/NO7Gt8IDSGA</item>
+        <item>https://www.youtube.com/embed/9O7OJi7RCLQ</item>
+        <item>https://www.youtube.com/embed/FKvnmxte98A</item>
+    </string-array>
 </resources>

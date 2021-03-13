@@ -46,7 +46,6 @@ public class Courses extends AppCompatActivity implements View.OnClickListener {
             Intent intent = new Intent(Courses.this, SelectedCourseActivity.class);
             intent.putExtra("course", "Digital System Design");
             startActivity(intent);
-
         }
     }
 
