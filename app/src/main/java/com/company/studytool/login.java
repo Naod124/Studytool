@@ -24,6 +24,17 @@ import com.google.android.material.textfield.TextInputLayout;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class login extends AppCompatActivity {
 
     TextInputLayout username, password;
@@ -207,17 +218,13 @@ This will add quiz to DB
     public void forgotPassword(View view) {
         startActivity(new Intent(login.this, ForgotPassword.class));
 
-        
+
     }
+
+
+
+
+
+
+
 }
-
-
-
-
-
-
-
-
-
-
-

@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.BufferedReader;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -26,6 +27,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import java.io.InputStreamReader;
+import java.io.PrintStream;
 import java.util.ArrayList;
 
 public class Quiz extends AppCompatActivity {
@@ -72,6 +74,7 @@ public class Quiz extends AppCompatActivity {
         score = findViewById(R.id.score);
         Intent intent = getIntent();
         courseName = intent.getStringExtra("course");
+        StudentDetails.setCurrentCourse(courseName);
         nextQuestion.setEnabled(false);
         switch (courseName) {
             case "Data Structure":
@@ -146,6 +149,10 @@ public class Quiz extends AppCompatActivity {
 //                    if (position >= dSQuiz.size()) {
 //                        alertDialog("Do you wanna repeat this quiz ?", "Quiz Complete");
 //                    }
+                choice1.setChecked(false);
+                choice2.setChecked(false);
+                choice3.setChecked(false);
+                choice4.setChecked(false);
                 position++;
                 questionNum.setText("Questions : " + (position + 1) + "/" + courseQuiz.size());
                 choice1.setBackground(pressedButton);
@@ -473,25 +480,18 @@ public class Quiz extends AppCompatActivity {
     //    public String checkDigit(int number) {
 //        return number <= 9 ? "0" + number : String.valueOf(number);
 //    }
-    public void saveScore(int number, String filePath) throws FileNotFoundException {
-        int text = number;
-        FileOutputStream fos = null;
+    public void saveScore(int number, String filePath) {
+        File directory  = getFilesDir();
+        directory .mkdirs();
+        File file = new File(directory ,filePath+".txt");
         try {
-            fos = openFileOutput(filePath+".txt", MODE_PRIVATE);
-            fos.write(text);
+            FileOutputStream fos = new FileOutputStream(file, true);
 
-            Toast.makeText(this, "Saved to " + getFilesDir() + "/" + filePath+".txt",
-                    Toast.LENGTH_LONG).show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (fos != null) {
-                try {
-                    fos.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+            PrintStream printstream = new PrintStream(fos);
+            printstream.print(number + "\n");
+            fos.close();
+        } catch (Exception e) {
+            Toast.makeText(Quiz.this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
 
     }

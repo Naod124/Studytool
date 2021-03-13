@@ -11,15 +11,17 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
 
 
-
-    public class ShowScoreActivity extends AppCompatActivity {
+public class ShowScoreActivity extends AppCompatActivity {
         TextView score;
         Button done;
 
@@ -30,10 +32,14 @@ import java.util.ArrayList;
             setContentView(R.layout.show_score_activity);
             score = findViewById(R.id.scoreView);
             done = findViewById(R.id.done);
-            Intent intent = getIntent();
-            String scoreConverted = intent.getStringExtra("score");
-            System.out.println(scoreConverted);
-            score.setText("You high score " + scoreConverted);
+
+            String scoreConverted = StudentDetails.getCurrentCourse();
+            System.out.println(StudentDetails.getCurrentCourse());
+            try {
+                score.setText("Your high score " + Collections.max(getScore(scoreConverted)));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
 
             done.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -45,33 +51,18 @@ import java.util.ArrayList;
         }
 
 
-    public ArrayList<Integer> getScore(String filePath) {
-        ArrayList<Integer> scores = new ArrayList<Integer>();
-        FileInputStream fis = null;
-        try {
-            fis = openFileInput(filePath + ".text");
-            InputStreamReader isr = new InputStreamReader(fis);
-            BufferedReader br = new BufferedReader(isr);
-            StringBuilder sb = new StringBuilder();
-            String text;
-            while ((text = br.readLine()) != null) {
+    public ArrayList<Integer> getScore(String filePath) throws FileNotFoundException {
+        ArrayList<Integer> scores = new ArrayList<>();
+        File directory  = getFilesDir();
+        File file = new File(directory ,filePath+".txt");
 
-                scores.add(Integer.parseInt(String.valueOf(sb.append(text))));
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (fis != null) {
-                try {
-                    fis.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+        Scanner scanner = new Scanner(file);
+
+        while(scanner.hasNextInt())
+        {
+            scores.add(scanner.nextInt());
         }
-
+        System.out.println(scores.size());
         return scores;
     }
 }

@@ -6,6 +6,7 @@ public class StudentDetails {
     static String username = "";
     static String password = "";
     static String chatWith = "";
+    static String currentCourse ="";
     private long messageTime;
 
     public StudentDetails(){
@@ -18,5 +19,13 @@ public class StudentDetails {
 
     public void setMessageTime(long messageTime) {
         this.messageTime = messageTime;
+    }
+
+    public static String getCurrentCourse() {
+        return currentCourse;
+    }
+
+    public static void setCurrentCourse(String currentCourse) {
+        StudentDetails.currentCourse = currentCourse;
     }
 }
