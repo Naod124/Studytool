@@ -17,7 +17,7 @@
             android:launchMode="singleTop" />
 
         <activity
-            android:name=".AddNodeActivity"
+            android:name=".AddEditNodeActivity"
             android:parentActivityName=".MyToDoList" />
 
         <activity android:name=".privateMessage" />

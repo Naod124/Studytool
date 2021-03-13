@@ -3,22 +3,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MyToDoList"
-    android:background="@color/hkrGreen">
+    android:background="@color/hkrGreen"
+    tools:context=".MyToDoList">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
+    <LinearLayout
+        android:id="@+id/linear1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:listitem="@layout/node_item" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:orientation="vertical">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/node_item" />
+    </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_note"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="32dp"
-        android:src="@drawable/ic_add"
         android:background="@android:color/transparent"
-        android:id="@+id/add_note"/>
+        android:src="@drawable/ic_add" />
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

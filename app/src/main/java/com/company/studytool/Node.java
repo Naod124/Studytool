@@ -1,14 +1,18 @@
 package com.company.studytool;
 
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "favorite_table")
 public class Node {
-    private String title;
-    private String description;
     @PrimaryKey(autoGenerate = true)
     private int id;
+    @ColumnInfo(defaultValue = "Title")
+    private String title;
+    @ColumnInfo(defaultValue = "Description")
+    private String description;
+    @ColumnInfo(defaultValue = "Priority")
     private int priority;
 
     public Node(String title, String description, int priority) {

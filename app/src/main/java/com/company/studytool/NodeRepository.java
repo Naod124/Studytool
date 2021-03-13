@@ -43,23 +43,49 @@ public class NodeRepository {
         return listLiveData;
     }
 
-
     // insert task starts ...
     public void insertTask(Node node) {
-
-        nodeDao.insert(node);
+        Runnable r = new Runnable() {
+            @Override
+            public void run() {
+                nodeDao.insert(node);
+            }
+        };
+        Thread thread = new Thread(r);
+        thread.start();
     }
 
     public void updateTask(Node node) {
-        nodeDao.update(node);
+        Runnable r = new Runnable() {
+            @Override
+            public void run() {
+                nodeDao.update(node);
+            }
+        };
+        Thread thread = new Thread(r);
+        thread.start();
     }
 
     public void deleteTask(Node node) {
-        nodeDao.delete(node);
+        Runnable r = new Runnable() {
+            @Override
+            public void run() {
+                nodeDao.delete(node);
+            }
+        };
+        Thread thread = new Thread(r);
+        thread.start();
     }
 
     public void deleteAllTask() {
-        nodeDao.deleteAll();
+        Runnable r = new Runnable() {
+            @Override
+            public void run() {
+                nodeDao.deleteAll();
+            }
+        };
+        Thread thread = new Thread(r);
+        thread.start();
     }
 
 

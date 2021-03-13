@@ -26,4 +26,5 @@ public interface NodeDao {
     @Query("select * from favorite_table order by priority DESC")
     LiveData<List<Node>> getAllNodes();
 
+
 }

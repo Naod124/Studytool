@@ -36,4 +36,6 @@
     <string name="start_quiz">Start Quiz</string>
     <string name="facebook_app_id">181738426848830</string>
     <string name="facebook_login_protocol_scheme">fb181738426848830</string>
+    <string name="save">Save</string>
+    <string name="delete_all">Delete All</string>
 </resources>

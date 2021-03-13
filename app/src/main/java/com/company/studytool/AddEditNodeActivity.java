@@ -14,7 +14,9 @@ import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.Toast;
 
-public class AddNodeActivity extends AppCompatActivity {
+import java.util.Objects;
+
+public class AddEditNodeActivity extends AppCompatActivity {
     public static final String Extra_Title = "title";
     public static final String Extra_Description = "description";
     public static final String Extra_Priority = "priority";
@@ -37,7 +39,7 @@ public class AddNodeActivity extends AppCompatActivity {
         priority.setMinValue(1);
         priority.setMaxValue(10);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close);
+        Objects.requireNonNull(getSupportActionBar()).setHomeAsUpIndicator(R.drawable.ic_close);
         Intent intent = getIntent();
         if (intent.hasExtra(Extra_ID)) {
             setTitle("Edit Note");
@@ -50,6 +52,7 @@ public class AddNodeActivity extends AppCompatActivity {
     }
 
     private void saveNote() {
+
         String titleText = title.getText().toString();
         String descriptionText = description.getText().toString();
         int priorityNumber = priority.getValue();
@@ -61,7 +64,7 @@ public class AddNodeActivity extends AppCompatActivity {
         data.putExtra(Extra_Title, titleText);
         data.putExtra(Extra_Description, descriptionText);
         data.putExtra(Extra_Priority, priorityNumber);
-        int id = getIntent().getIntExtra(Extra_ID, -1);
+        int id = getParentActivityIntent().getIntExtra(Extra_ID, 1);
         if (id != -1) {
             data.putExtra(Extra_ID, id);
         }
@@ -82,6 +85,8 @@ public class AddNodeActivity extends AppCompatActivity {
             case R.id.save_node:
                 saveNote();
                 return true;
+            case R.id.close_node:
+                finish();
             default:
                 return super.onOptionsItemSelected(item);
         }

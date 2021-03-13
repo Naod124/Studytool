@@ -3,10 +3,9 @@ package com.company.studytool;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,6 +25,7 @@ import java.util.List;
 
 public class MyToDoList extends AppCompatActivity {
     private NodeViewModel nodeViewModel;
+    private Toolbar toolbar;
     public static final int ADD_NOTE_CODE = 1;
     public static final int Edit_NOTE_CODE = 2;
 
@@ -37,10 +37,14 @@ public class MyToDoList extends AppCompatActivity {
         actionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MyToDoList.this, AddNodeActivity.class);
+                Intent intent = new Intent(MyToDoList.this, AddEditNodeActivity.class);
                 startActivityForResult(intent, ADD_NOTE_CODE);
             }
         });
+
+        toolbar = findViewById(R.id.toolbar_main);
+        toolbar.setTitle("To Do List");
+        setSupportActionBar(toolbar);
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
@@ -53,7 +57,7 @@ public class MyToDoList extends AppCompatActivity {
                 adapter.submitList(nodes);
             }
         });
-        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
                 return false;
@@ -68,11 +72,11 @@ public class MyToDoList extends AppCompatActivity {
         adapter.setOnItemClickListener(new NodeViewAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Node node) {
-                Intent intent = new Intent(MyToDoList.this, AddNodeActivity.class);
-                intent.putExtra(AddNodeActivity.Extra_ID, node.getId());
-                intent.putExtra(AddNodeActivity.Extra_Title, node.getTitle());
-                intent.putExtra(AddNodeActivity.Extra_Description, node.getDescription());
-                intent.putExtra(AddNodeActivity.Extra_Priority, node.getPriority());
+                Intent intent = new Intent(MyToDoList.this, AddEditNodeActivity.class);
+                intent.putExtra(AddEditNodeActivity.Extra_ID, node.getId());
+                intent.putExtra(AddEditNodeActivity.Extra_Title, node.getTitle());
+                intent.putExtra(AddEditNodeActivity.Extra_Description, node.getDescription());
+                intent.putExtra(AddEditNodeActivity.Extra_Priority, node.getPriority());
                 startActivityForResult(intent, Edit_NOTE_CODE);
             }
         });
@@ -82,21 +86,25 @@ public class MyToDoList extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == ADD_NOTE_CODE && resultCode == RESULT_OK) {
-            String title = data.getStringExtra(AddNodeActivity.Extra_Title);
-            String description = data.getStringExtra(AddNodeActivity.Extra_Description);
-            int priority = data.getIntExtra(AddNodeActivity.Extra_Priority, 1);
+            String title = data.getStringExtra(AddEditNodeActivity.Extra_Title);
+            String description = data.getStringExtra(AddEditNodeActivity.Extra_Description);
+            int priority = data.getIntExtra(AddEditNodeActivity.Extra_Priority, 1);
             Node node = new Node(title, description, priority);
             nodeViewModel.insert(node);
             Toast.makeText(this, "Note Saved", Toast.LENGTH_SHORT).show();
         } else if (requestCode == Edit_NOTE_CODE && resultCode == RESULT_OK) {
-            int id = getIntent().getIntExtra(AddNodeActivity.Extra_ID, -1);
-            if (id != -1) {
-                Toast.makeText(this, "Note can not be updated", Toast.LENGTH_SHORT).show();
+            Intent intent = getIntent();
+            int id = intent.getIntExtra(AddEditNodeActivity.Extra_ID, -1);
+            if (intent.hasExtra(AddEditNodeActivity.Extra_ID)) {
+                Toast.makeText(this, "id" + id, Toast.LENGTH_LONG).show();
+            }
+            if (id == -1) {
+                Toast.makeText(this, "Note can not be updated" + id, Toast.LENGTH_SHORT).show();
                 return;
             } else {
-                String title = data.getStringExtra(AddNodeActivity.Extra_Title);
-                String description = data.getStringExtra(AddNodeActivity.Extra_Description);
-                int priority = data.getIntExtra(AddNodeActivity.Extra_Priority, 1);
+                String title = data.getStringExtra(AddEditNodeActivity.Extra_Title);
+                String description = data.getStringExtra(AddEditNodeActivity.Extra_Description);
+                int priority = data.getIntExtra(AddEditNodeActivity.Extra_Priority, 1);
                 Node node = new Node(title, description, priority);
                 node.setId(id);
                 nodeViewModel.update(node);
@@ -118,7 +126,7 @@ public class MyToDoList extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         switch (item.getItemId()) {
-            case R.id.save_node:
+            case R.id.deleteAll:
                 nodeViewModel.deleteAll();
                 Toast.makeText(this, "All notes deleted", Toast.LENGTH_SHORT).show();
                 return true;
