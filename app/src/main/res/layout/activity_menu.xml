@@ -63,14 +63,4 @@
         android:background="@drawable/custom_button"
 	    android:text="My To Do List" />
 
-	    <Button
-          android:id="@+id/Confirm"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginBottom="20dp"
-          android:background="@drawable/custom_button"
-          android:text="Confirm" />
-
-
-
 </LinearLayout>
