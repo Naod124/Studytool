@@ -1,7 +1,9 @@
 package com.company.studytool;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -30,36 +32,6 @@ public class ForgotPassword extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 TextInputEditText emailText = findViewById(R.id.emailSend);
-              /*  SendEmail sendEmail = new SendEmail();
-
-                try {
-                    sendEmail.send(Objects.requireNonNull(emailText.getText()).toString());
-                } catch (MessagingException e) {
-                    e.printStackTrace();
-                }
-                Toast.makeText(ForgotPassword.this, "Mail sent", Toast.LENGTH_LONG).show();
-
-            */
-             /*   BackgroundMail.newBuilder(ForgotPassword.this)
-                        .withUsername("confirmstudytool@gmail.com")
-                        .withPassword("study_tool10")
-                        .withMailto(emailText.getText().toString())
-                        .withType(BackgroundMail.TYPE_PLAIN)
-                        .withSubject("Confirmation code")
-                        .withBody("Your confirmation code is " + randomCode)
-                        .withOnSuccessCallback(new BackgroundMail.OnSuccessCallback() {
-                            @Override
-                            public void onSuccess() {
-                                //do some magic
-                            }
-                        })
-                        .withOnFailCallback(new BackgroundMail.OnFailCallback() {
-                            @Override
-                            public void onFail() {
-                                //do some magic
-                            }
-                        })
-                        .send();*/
 
                 BackgroundMail.newBuilder(ForgotPassword.this)
                         .withUsername("confirmstudytool@gmail.com")
@@ -77,14 +49,27 @@ public class ForgotPassword extends AppCompatActivity {
                             @Override
                             public void onSuccess() {
                                 // do some magic
+                                new AlertDialog.Builder(ForgotPassword.this)
+                                        .setTitle("Mail sent")
+                                        .setMessage("Check your mail for the code")
+                                        .setPositiveButton(android.R.string.ok, null)
+                                        .show();
+
                             }
 
                             @Override
                             public void onFail(Exception e) {
                                 // do some magic
+                                new AlertDialog.Builder(ForgotPassword.this)
+                                        .setTitle("Mail was not sent")
+                                        .setMessage("verify if you typed correct email")
+                                        .setPositiveButton(android.R.string.ok, null)
+                                        .show();
                             }
                         })
                         .send();
+
+
                     Toast.makeText(ForgotPassword.this,"Mail sent", Toast.LENGTH_LONG).show();
            }
         });
@@ -103,6 +88,7 @@ public class ForgotPassword extends AppCompatActivity {
        TextInputEditText newPass = findViewById(R.id.newPass);
        TextInputEditText repeatPass = findViewById(R.id.repeatPass);
        TextInputEditText userName = findViewById(R.id.usernamn);
+       TextInputEditText email = findViewById(R.id.emailSend);
 
        int randomNumber = Integer.parseInt(resetCode.getText().toString());
        if (randomNumber==randomCode){
@@ -110,8 +96,16 @@ public class ForgotPassword extends AppCompatActivity {
                     HashMap<String, Object> result = new HashMap<>();
                             result.put("Password", newPass.getText().toString());
                               FirebaseDatabase.getInstance().getReference().child("Users").child(userName.getText().toString()).updateChildren(result);
-                             Toast.makeText(ForgotPassword.this, "Password is updated",Toast.LENGTH_LONG).show();
-                             startActivity(new Intent(ForgotPassword.this, login.class));
+               new AlertDialog.Builder(ForgotPassword.this)
+                       .setTitle("Password is updated ")
+                       .setMessage("You can log in with your new password")
+                       .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                           @Override
+                           public void onClick(DialogInterface dialog, int which) {
+                               startActivity(new Intent(ForgotPassword.this, login.class));
+                           }
+                       })
+                       .show();
            }
            else {
                repeatPass.setError("The password you entered does not match");

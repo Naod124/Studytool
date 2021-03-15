@@ -45,47 +45,20 @@ public class NodeRepository {
 
     // insert task starts ...
     public void insertTask(Node node) {
-        Runnable r = new Runnable() {
-            @Override
-            public void run() {
-                nodeDao.insert(node);
-            }
-        };
-        Thread thread = new Thread(r);
-        thread.start();
+
+   nodeDao.insert(node);
     }
 
     public void updateTask(Node node) {
-        Runnable r = new Runnable() {
-            @Override
-            public void run() {
-                nodeDao.update(node);
-            }
-        };
-        Thread thread = new Thread(r);
-        thread.start();
+      nodeDao.update(node);
     }
 
     public void deleteTask(Node node) {
-        Runnable r = new Runnable() {
-            @Override
-            public void run() {
-                nodeDao.delete(node);
-            }
-        };
-        Thread thread = new Thread(r);
-        thread.start();
+     nodeDao.delete(node);
     }
 
     public void deleteAllTask() {
-        Runnable r = new Runnable() {
-            @Override
-            public void run() {
-                nodeDao.deleteAll();
-            }
-        };
-        Thread thread = new Thread(r);
-        thread.start();
+      nodeDao.deleteAll();
     }
 
 

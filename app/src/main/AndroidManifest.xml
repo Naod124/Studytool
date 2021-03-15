@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.company.studytool">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -20,10 +21,8 @@
             android:name=".AddEditNodeActivity"
             android:parentActivityName=".MyToDoList" />
 
-        <activity android:name=".privateMessage" />
 
-        <activity android:name=".YoutubeViewHolder"></activity>
-        <activity android:name=".YoutubeAdapter" />
+
         <activity android:name=".VideoFullScreen" />
 
         <meta-data
