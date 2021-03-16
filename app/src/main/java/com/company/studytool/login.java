@@ -54,6 +54,7 @@ public class login extends AppCompatActivity {
         username = (TextInputLayout) findViewById(R.id.username);
         password = (TextInputLayout) findViewById(R.id.password);
         loginButton = (Button) findViewById(R.id.loginButton);
+        password.isPasswordVisibilityToggleEnabled();
         loginButton.setOnClickListener(v -> {
 /*
 This will add quiz to DB
