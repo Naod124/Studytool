@@ -36,26 +36,22 @@
 </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:errorEnabled="true"
         app:passwordToggleEnabled="true"
-        app:passwordToggleContentDescription="@string/password"
         app:counterEnabled="true"
-        android:id="@+id/password"
-        app:counterMaxLength="16"
         app:counterTextColor="@color/hkrGreen"
         app:counterOverflowTextColor="@color/red"
-        >
+        app:counterMaxLength="16">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/passwordField"
             android:layout_width="match_parent"
-
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8sp"
+            android:layout_marginBottom="10sp"
             android:hint="@string/password"
-            android:inputType="text" />
+            android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
     <Button
         android:id="@+id/loginButton"
