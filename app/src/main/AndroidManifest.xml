@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.company.studytool">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -26,6 +27,9 @@
         <activity android:name=".Model.YoutubeViewHolder" />
         <activity android:name=".Adapter.YoutubeAdapter" />
         <activity android:name=".View.VideoFullScreenActivity" />
+
+
+        <activity android:name=".VideoFullScreen" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -67,16 +71,13 @@
 
         <activity android:name=".View.MenuActivity" />
 
-        <activity android:name=".View.RegisterActivity" />
-        <activity android:name=".View.StartQuizActivity" />
-        <activity android:name=".View.QuizActivity" />
+		<activity android:name=".View.RegisterActivity" />
+		<activity android:name=".View.StartQuizActivity" />
+		<activity android:name=".View.QuizActivity" />
 
         <provider
             android:name="com.facebook.FacebookContentProvider"
             android:authorities="com.facebook.app.FacebookContentProvider181738426848830"
             android:exported="true" />
     </application>
-
-</manifest>
-
-
+		</manifest> 

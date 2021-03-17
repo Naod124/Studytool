@@ -42,12 +42,30 @@
 
     </string-array>
     <string-array name="DsVideos">
+        <item>https://www.youtube.com/embed/V6mKVRU1evU</item>
+        <item>https://www.youtube.com/embed/M4ubFru2O80</item>
+        <item>https://www.youtube.com/embed/4VqmGXwpLqc</item>
+        <item>https://www.youtube.com/embed/nKzEJWbkPbQ</item>
+        <item>https://www.youtube.com/embed/9O7OJi7RCLQ</item>
+        <item>https://www.youtube.com/embed/FKvnmxte98A</item>
 
     </string-array>
     <string-array name="DcVideos">
+        <item>https://www.youtube.com/embed/oIRkXulqJA4</item>
+        <item>https://www.youtube.com/embed/vv4y_uOneC0</item>
+        <item>https://www.youtube.com/embed/1z0ULvg_pW8</item>
+        <item>https://www.youtube.com/embed/Mad4kQ5835Y</item>
+        <item>https://www.youtube.com/embed/9O7OJi7RCLQ</item>
+        <item>https://www.youtube.com/embed/FKvnmxte98A</item>
 
     </string-array>
     <string-array name="OsVideos">
+        <item>https://www.youtube.com/embed/VjPgYcQqqN0</item>
+        <item>https://www.youtube.com/embed/YcRd3WMbXnE</item>
+        <item>https://www.youtube.com/embed/F18RiREDkwE</item>
+        <item>https://www.youtube.com/embed/So9SR3qpWsM</item>
+        <item>https://www.youtube.com/embed/9O7OJi7RCLQ</item>
+        <item>https://www.youtube.com/embed/FKvnmxte98A</item>
 
     </string-array>
     <string-array name="DdVideos">

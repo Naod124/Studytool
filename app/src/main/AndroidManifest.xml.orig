@@ -1,9 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.company.studytool">
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -12,36 +13,77 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Studytool">
-<<<<<<< HEAD
+
         <activity
-            android:name=".MyToDoList"
+            android:name=".View.MyToDoListActivity"
             android:launchMode="singleTop" />
+
         <activity
-            android:name=".AddNodeActivity"
-            android:parentActivityName=".MyToDoList" />
+            android:name=".View.AddEditNodeActivity"
+            android:parentActivityName=".View.MyToDoListActivity" />
+
+<<<<<<< HEAD
+        <activity android:name=".View.privateMessageActivity" />
+
+        <activity android:name=".Model.YoutubeViewHolder" />
+        <activity android:name=".Adapter.YoutubeAdapter" />
+        <activity android:name=".View.VideoFullScreenActivity" />
 =======
-        <activity android:name=".ForgotPassword"></activity>
->>>>>>> a7affc174b12adfc8451ff47cb4bbfdfe19e8384
-        <activity android:name=".privateMessage" />
-        <activity android:name=".StudentList" />
-        <activity android:name=".TruthTable" />
-        <activity android:name=".DigitalVideo" />
-        <activity android:name=".SelectedCourseActivity" />
-        <activity android:name=".Courses" />
-        <activity android:name=".MainActivity">
+
+
+        <activity android:name=".VideoFullScreen" />
+>>>>>>> b7ca633cce4c8f819ea937ae9b8c437a987cc28c
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <activity android:name=".View.FacebookActivity" />
+        <activity android:name=".View.privateMessageActivity" />
+        <activity android:name=".View.StudentListActivity" />
+        <activity android:name=".View.ForgotPasswordActivity" />
+        <activity android:name=".View.TruthTableActivity" />
+
+        <activity android:name=".View.DigitalVideoActivity" />
+
+        <activity android:name=".View.SelectedCourseActivity" />
+
+        <activity android:name=".View.CoursesActivity" />
+
+
+        <activity android:name=".View.MainActivity">
+
+
             <intent-filter>
+
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+
             </intent-filter>
+
         </activity>
-        <activity android:name=".PracticeActivity" />
-        <activity android:name=".ShowScoreActivity" />
-        <activity android:name=".DigitalBook"/>
-        <activity android:name=".login"/>
-        <activity android:name=".Menu"/>
-        <activity android:name=".Register"/>
-        <activity android:name=".Quiz"/>
+
+        <activity android:name=".View.PracticeActivity" />
+
+        <activity android:name=".View.ShowScoreActivity" />
+
+        <activity android:name=".View.DigitalBookActivity" />
+
+        <activity android:name=".View.loginActivity" />
+
+        <activity android:name=".View.MenuActivity" />
+
+        <activity android:name=".View.RegisterActivity" />
+        <activity android:name=".View.StartQuizActivity" />
+        <activity android:name=".View.QuizActivity" />
+
+        <provider
+            android:name="com.facebook.FacebookContentProvider"
+            android:authorities="com.facebook.app.FacebookContentProvider181738426848830"
+            android:exported="true" />
     </application>
 
 </manifest>
+
+

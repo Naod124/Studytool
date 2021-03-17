@@ -30,7 +30,6 @@ public class FacebookActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //FacebookSdk.sdkInitialize(this.getApplicationContext());
         setContentView(R.layout.activity_facebook);
 
         loginButton= findViewById(R.id.lb_login);
