@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/quiz_background"
-    tools:context=".StartQuiz">
+    tools:context=".View.StartQuizActivity">
 
 
     <TextView
@@ -14,17 +14,17 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="127dp"
         android:text="@string/test_your_self_before_exam"
+        android:textColor="@color/hkrDarkGreen"
+        android:textSize="30sp"
+        android:textStyle="bold|italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.037"
-        android:textSize="30sp"
-        android:textColor="@color/hkrDarkGreen"
-        android:textStyle="bold|italic"
-        />
+        app:layout_constraintVertical_bias="0.037" />
 
     <Button
+        android:id="@+id/startQuiz"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/custom_button"
@@ -33,6 +33,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:id="@+id/startQuiz"/>
+        app:layout_constraintVertical_bias="0.438" />
+
+    <Button
+        android:id="@+id/truthTable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_button"
+        android:text="@string/truth_table"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.53" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

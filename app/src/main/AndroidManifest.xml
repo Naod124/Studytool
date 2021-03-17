@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/newicone_launcher_round"
@@ -13,37 +14,37 @@
         android:theme="@style/Theme.Studytool">
 
         <activity
-            android:name=".MyToDoList"
+            android:name=".View.MyToDoListActivity"
             android:launchMode="singleTop" />
 
         <activity
-            android:name=".AddEditNodeActivity"
-            android:parentActivityName=".MyToDoList" />
+            android:name=".View.AddEditNodeActivity"
+            android:parentActivityName=".View.MyToDoListActivity" />
 
-        <activity android:name=".privateMessage" />
+        <activity android:name=".View.privateMessageActivity" />
 
-        <activity android:name=".YoutubeViewHolder"></activity>
-        <activity android:name=".YoutubeAdapter" />
-        <activity android:name=".VideoFullScreen" />
+        <activity android:name=".Model.YoutubeViewHolder" />
+        <activity android:name=".Adapter.YoutubeAdapter" />
+        <activity android:name=".View.VideoFullScreenActivity" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
 
-        <activity android:name=".Facebook" />
-        <activity android:name=".privateMessage" />
-        <activity android:name=".StudentList" />
-        <activity android:name=".ForgotPassword" />
-        <activity android:name=".TruthTable" />
+        <activity android:name=".View.FacebookActivity" />
+        <activity android:name=".View.privateMessageActivity" />
+        <activity android:name=".View.StudentListActivity" />
+        <activity android:name=".View.ForgotPasswordActivity" />
+        <activity android:name=".View.TruthTableActivity" />
 
-        <activity android:name=".DigitalVideo" />
+        <activity android:name=".View.DigitalVideoActivity" />
 
-        <activity android:name=".SelectedCourseActivity" />
+        <activity android:name=".View.SelectedCourseActivity" />
 
-        <activity android:name=".Courses" />
+        <activity android:name=".View.CoursesActivity" />
 
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".View.MainActivity">
 
 
             <intent-filter>
@@ -56,19 +57,19 @@
 
         </activity>
 
-        <activity android:name=".PracticeActivity" />
+        <activity android:name=".View.PracticeActivity" />
 
-        <activity android:name=".ShowScoreActivity" />
+        <activity android:name=".View.ShowScoreActivity" />
 
-        <activity android:name=".DigitalBook" />
+        <activity android:name=".View.DigitalBookActivity" />
 
-        <activity android:name=".login" />
+        <activity android:name=".View.loginActivity" />
 
-        <activity android:name=".Menu" />
+        <activity android:name=".View.MenuActivity" />
 
-        <activity android:name=".Register" />
-
-        <activity android:name=".Quiz" />
+        <activity android:name=".View.RegisterActivity" />
+        <activity android:name=".View.StartQuizActivity" />
+        <activity android:name=".View.QuizActivity" />
 
         <provider
             android:name="com.facebook.FacebookContentProvider"

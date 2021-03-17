@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".login"
+    tools:context=".View.loginActivity"
     android:orientation="vertical"
     android:gravity="center"
     android:background="@drawable/signup_background"
@@ -51,11 +51,10 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/passwordField"
             android:layout_width="match_parent"
-
             android:layout_height="wrap_content"
             android:layout_marginBottom="8sp"
             android:hint="@string/password"
-            android:inputType="text" />
+            android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
     <Button
         android:id="@+id/loginButton"

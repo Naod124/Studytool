@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/project_login_background"
     android:padding="10dp"
-    tools:context=".Quiz">
+    tools:context=".View.QuizActivity">
 
     <TextView
         android:id="@+id/timer"
@@ -53,20 +53,46 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
+        android:id="@+id/tries"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="108dp"
+        android:text="You have 0 chance left to earn a score"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/question"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/score"
+        app:layout_constraintVertical_bias="0.064" />
+
+    <TextSwitcher
         android:id="@+id/question"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="248dp"
         android:lines="3"
         android:text="The Question will be here"
-        android:textColor="@color/white"
-        android:textSize="17sp"
         app:layout_constraintBottom_toTopOf="@+id/radioGroup"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            />
+        <TextView
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </TextSwitcher>
 
     <RadioGroup
         android:id="@+id/radioGroup"
@@ -78,38 +104,37 @@
         app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/questionNum"
-        app:layout_constraintVertical_bias="0.621"
-        >
+        app:layout_constraintVertical_bias="0.621">
 
         <RadioButton
             android:id="@+id/choice1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/button_pressed"
+            android:lines="4"
             android:text="Option 1"
             android:textColor="@color/white"
-            android:textSize="17sp"
-            android:lines="4"/>
+            android:textSize="17sp" />
 
         <RadioButton
             android:id="@+id/choice2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/button_pressed"
+            android:lines="4"
             android:text="Option 2"
             android:textColor="@color/white"
-            android:textSize="17sp"
-            android:lines="4"/>
+            android:textSize="17sp" />
 
         <RadioButton
             android:id="@+id/choice3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/button_pressed"
+            android:lines="4"
             android:text="Option 3"
             android:textColor="@color/white"
-            android:textSize="17sp"
-            android:lines="4"/>
+            android:textSize="17sp" />
 
 
         <RadioButton
@@ -117,10 +142,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/button_pressed"
+            android:lines="4"
             android:text="Option 4"
             android:textColor="@color/white"
-            android:textSize="17sp"
-            android:lines="4"/>
+            android:textSize="17sp" />
 
     </RadioGroup>
 

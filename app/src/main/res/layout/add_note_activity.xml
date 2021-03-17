@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".AddEditNodeActivity"
+    tools:context=".View.AddEditNodeActivity"
     android:background="@drawable/quiz_background">
 
     <androidx.appcompat.widget.Toolbar

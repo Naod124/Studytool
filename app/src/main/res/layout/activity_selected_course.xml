@@ -8,7 +8,7 @@
     android:gravity="center"
     android:background="@drawable/quiz_background"
     android:orientation="vertical"
-    tools:context=".SelectedCourseActivity">
+    tools:context=".View.SelectedCourseActivity">
 
     <TextView
         android:layout_width="match_parent"
