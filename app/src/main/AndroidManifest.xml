@@ -24,19 +24,15 @@
 
         <activity android:name=".View.privateMessageActivity" />
 
-        <activity android:name=".Model.YoutubeViewHolder" />
-        <activity android:name=".Adapter.YoutubeAdapter" />
+
         <activity android:name=".View.VideoFullScreenActivity" />
 
-
-        <activity android:name=".VideoFullScreen" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
 
         <activity android:name=".View.FacebookActivity" />
-        <activity android:name=".View.privateMessageActivity" />
         <activity android:name=".View.StudentListActivity" />
         <activity android:name=".View.ForgotPasswordActivity" />
         <activity android:name=".View.TruthTableActivity" />

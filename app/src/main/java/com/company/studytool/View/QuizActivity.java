@@ -50,10 +50,10 @@ public class QuizActivity extends AppCompatActivity {
     private int questionNumber = 1;
     private int tries = 2;
     private final ArrayList<QuestionModel> quizList = new ArrayList<>();
-    String courseName = "";
-    Drawable pressedButton;
-    Drawable disabledButton;
-    CountDownTimer countDownTimer;
+    private String courseName = "";
+    private Drawable pressedButton;
+    private Drawable disabledButton;
+    private CountDownTimer countDownTimer;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -195,6 +195,7 @@ public class QuizActivity extends AppCompatActivity {
                         position = 0;
                         questionNumber = 0;
                         scoreNum = 0;
+                        score.setText("Score : " + scoreNum);
                         setNextQuestion();
                     }
                 }).setNegativeButton("No", new DialogInterface.OnClickListener() {
