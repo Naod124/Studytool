@@ -13,6 +13,8 @@
     <string name="username">Username</string>
     <string name="email">Someone@stud.hkr.se</string>
     <string name="register">Register</string>
+    <string name="navigation_drawer_open">open navigation drawer</string>
+    <string name="navigation_drawer_close">close navigation drawer</string>
     <string name="click_here_to_login">Click here to login</string>
     <string name="passwordRules"><p><b><br> at least 1 digit</br>
         <br>at least 1 lower case letter</br>
@@ -38,6 +40,7 @@
     <string name="facebook_login_protocol_scheme">fb181738426848830</string>
     <string name="save">Save</string>
     <string name="delete_all">Delete All</string>
+    <string name="welcome">Welcome</string>
     <string-array name="YoutubeVideos">
 
     </string-array>

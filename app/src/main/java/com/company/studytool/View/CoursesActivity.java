@@ -28,7 +28,6 @@ public class CoursesActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-
         if (v.getId() == moveToDS.getId()) {
             Intent intent = new Intent(CoursesActivity.this, SelectedCourseActivity.class);
             intent.putExtra("course", "Data Structure");
@@ -37,18 +36,14 @@ public class CoursesActivity extends AppCompatActivity implements View.OnClickLi
             Intent intent = new Intent(CoursesActivity.this, SelectedCourseActivity.class);
             intent.putExtra("course", "Data Communication");
             startActivity(intent);
-
         } else if (v.getId() == moveToOS.getId()) {
-
             Intent intent = new Intent(CoursesActivity.this, SelectedCourseActivity.class);
             intent.putExtra("course", "Operating System");
             startActivity(intent);
-
         } else if (v.getId() == moveToDigital.getId()) {
             Intent intent = new Intent(CoursesActivity.this, SelectedCourseActivity.class);
             intent.putExtra("course", "Digital System Design");
             startActivity(intent);
         }
     }
-
 }
