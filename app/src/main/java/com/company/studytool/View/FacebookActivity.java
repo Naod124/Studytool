@@ -41,7 +41,7 @@ public class FacebookActivity extends AppCompatActivity {
         callbackManager= CallbackManager.Factory.create();
 
     }
-    @Override
+   /* @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         callbackManager.onActivityResult(requestCode,resultCode,data);
@@ -66,6 +66,8 @@ public class FacebookActivity extends AppCompatActivity {
 
     }
 
+
+    */
 
 
 }

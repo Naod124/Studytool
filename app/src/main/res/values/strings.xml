@@ -79,4 +79,6 @@
         <item>https://www.youtube.com/embed/9O7OJi7RCLQ</item>
         <item>https://www.youtube.com/embed/FKvnmxte98A</item>
     </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

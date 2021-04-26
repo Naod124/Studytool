@@ -7,7 +7,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -43,17 +42,19 @@ public class MenuActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.courses:
                         getSupportFragmentManager().beginTransaction().
-                                replace(R.id.fragmentsHolder, new CoursesFragment()).commit();
+                                replace(R.id.fragmentsHolder, new CourseFragment()).commit();
                         break;
                     case R.id.private_chat:
                         getSupportFragmentManager().beginTransaction().
-                                replace(R.id.fragmentsHolder, new PrivateMessageFragment()).commit();
+                                replace(R.id.fragmentsHolder, new student_list()).commit();
                         break;
                     case R.id.my_notes:
                         getSupportFragmentManager().beginTransaction().
-                                replace(R.id.fragmentsHolder, new MyToDoListFragment()).commit();
+                                replace(R.id.fragmentsHolder, new ToDolist()).commit();
                         break;
                     case R.id.share_to_facebook:
+                        getSupportFragmentManager().beginTransaction().
+                                replace(R.id.fragmentsHolder, new Facebook()).commit();
                         break;
                     case R.id.mail:
                         break;
