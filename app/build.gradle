@@ -76,6 +76,7 @@ dependencies {
     implementation 'com.facebook.android:facebook-android-sdk:7.1.0'
     implementation 'com.github.eddydn:videoplayer:1.10'
     implementation 'com.jakewharton:butterknife:10.2.3'
+    implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.21'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
