@@ -3,35 +3,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
     <group android:checkableBehavior="single">
-        <item android:title="Menu">
-           <menu>
-               <item
-                   android:id="@+id/courses"
-                   android:icon="@drawable/ic_courses"
-                   android:iconTint="@color/hkrGreen"
-                   android:title="Courses" />
-               <item
-                   android:id="@+id/private_chat"
-                   android:icon="@drawable/ic_private_chat"
-                   android:title="Private Chat" />
-               <item
-                   android:id="@+id/my_notes"
-                   android:icon="@drawable/ic_my_note"
-                   android:title="My Notes" />
-           </menu>
+        <item android:title="@string/menu">
+            <menu>
+                <item
+                    android:id="@+id/courses"
+                    android:icon="@drawable/ic_courses"
+                    android:title="@string/courses" />
+                <item
+                    android:id="@+id/private_chat"
+                    android:icon="@drawable/ic_private_chat"
+                    android:title="@string/private_chat" />
+                <item
+                    android:id="@+id/my_notes"
+                    android:icon="@drawable/ic_my_note"
+                    android:title="@string/my_notes" />
+                <item
+                    android:id="@+id/buy_sell"
+                    android:icon="@drawable/ic_my_note"
+                    android:title="@string/buy_sell_materials" />
+                <item
+                    android:id="@+id/project_manager"
+                    android:icon="@drawable/ic_my_note"
+                    android:title="@string/project_manager" />
+            </menu>
         </item>
 
     </group>
-    <item android:title="Share">
+    <item android:title="@string/share">
         <menu>
             <item
                 android:id="@+id/share_to_facebook"
                 android:icon="@drawable/ic_facebook"
-                android:title="Share To FaceBook" />
+                android:title="@string/share_to_facebook" />
             <item
                 android:id="@+id/mail"
                 android:icon="@drawable/ic_email"
-                android:title="Email_support" />
+                android:title="@string/email_support" />
         </menu>
     </item>
 </menu>
