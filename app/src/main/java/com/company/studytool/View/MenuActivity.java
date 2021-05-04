@@ -65,7 +65,7 @@ public class MenuActivity extends AppCompatActivity {
         });
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().
-                    replace(R.id.fragmentsHolder, new CoursesFragment()).commit();
+                    replace(R.id.fragmentsHolder, new CourseFragment()).commit();
             navigationView.setCheckedItem(R.id.courses);
         }
 //        privateChat = findViewById(R.id.privatechat);
