@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -37,6 +38,7 @@ public class MenuActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @SuppressLint("NonConstantResourceId")
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
@@ -55,6 +57,14 @@ public class MenuActivity extends AppCompatActivity {
                     case R.id.share_to_facebook:
                         getSupportFragmentManager().beginTransaction().
                                 replace(R.id.fragmentsHolder, new Facebook()).commit();
+                        break;
+                    case R.id.buy_sell:
+                        getSupportFragmentManager().beginTransaction().
+                                replace(R.id.fragmentsHolder, new BuySellFragment()).commit();
+                        break;
+                    case R.id.project_manager:
+                        getSupportFragmentManager().beginTransaction().
+                                replace(R.id.fragmentsHolder, new ProjectManagerFragment()).commit();
                         break;
                     case R.id.mail:
                         break;
