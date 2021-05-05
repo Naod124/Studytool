@@ -11,4 +11,6 @@
     <color name="hkrGreen">#a4d37d</color>
     <color name="grey">#6d6969</color>
     <color name="red">#c7134d</color>
+
+    <color name="background">#EEEEEE</color>
 </resources>

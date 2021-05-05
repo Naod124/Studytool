@@ -1,10 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.company.studytool">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:allowBackup="true"
@@ -13,20 +14,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Studytool">
-
+        <activity android:name=".View.ViewProductActivity"></activity>
+        <activity android:name=".View.AddProductActivity" />
+        <activity android:name=".View.StoreActivity" />
         <activity
             android:name=".View.MyToDoListActivity"
             android:launchMode="singleTop" />
-
         <activity
             android:name=".View.AddEditNodeActivity"
             android:parentActivityName=".View.MyToDoListActivity" />
-
         <activity android:name=".View.privateMessageActivity" />
-
-
         <activity android:name=".View.VideoFullScreenActivity" />
-
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -36,44 +34,32 @@
         <activity android:name=".View.StudentListActivity" />
         <activity android:name=".View.ForgotPasswordActivity" />
         <activity android:name=".View.TruthTableActivity" />
-
         <activity android:name=".View.DigitalVideoActivity" />
-
         <activity android:name=".View.SelectedCourseActivity" />
-
         <activity android:name=".View.CoursesActivity" />
-
-
         <activity android:name=".View.MainActivity">
-
-
             <intent-filter>
-
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-
             </intent-filter>
-
         </activity>
-
         <activity android:name=".View.PracticeActivity" />
-
         <activity android:name=".View.ShowScoreActivity" />
-
         <activity android:name=".View.DigitalBookActivity" />
-
         <activity android:name=".View.loginActivity" />
-
         <activity android:name=".View.MenuActivity" />
-
-		<activity android:name=".View.RegisterActivity" />
-		<activity android:name=".View.StartQuizActivity" />
-		<activity android:name=".View.QuizActivity" />
+        <activity android:name=".View.RegisterActivity" />
+        <activity android:name=".View.StartQuizActivity" />
+        <activity android:name=".View.QuizActivity" />
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat" />
 
         <provider
             android:name="com.facebook.FacebookContentProvider"
             android:authorities="com.facebook.app.FacebookContentProvider181738426848830"
             android:exported="true" />
     </application>
-		</manifest> 
+
+</manifest>

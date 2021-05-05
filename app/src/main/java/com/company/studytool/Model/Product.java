@@ -94,4 +94,3 @@ public class Product implements Serializable {
         isSold = sold;
     }
 }
-

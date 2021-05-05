@@ -120,6 +120,18 @@ public class ViewProductActivity extends AppCompatActivity {
 
             mRef.child(product.getKey()).removeValue();
 
+            /*Map map = new HashMap();
+            map.put("isSold", isChecked);
+            mRef.child(product.getKey()).updateChildren(map).addOnCompleteListener(new OnCompleteListener() {
+                @Override
+                public void onComplete(@NonNull Task task) {
+                    if(task.isSuccessful()){
+                        Log.d("ViewProductActivity", "Updated");
+                    }else{
+                        Log.d("ViewProductActivity", "Error");
+                    }
+                }
+            });*/
         });
     }
 
