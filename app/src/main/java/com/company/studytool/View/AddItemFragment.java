@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
+import com.company.studytool.R;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.FirebaseDatabase;
@@ -22,8 +23,8 @@ public class AddItemFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static com.example.firebasepractise.AddItemFragment newInstance() {
-        com.example.firebasepractise.AddItemFragment fragment = new com.example.firebasepractise.AddItemFragment();
+    public static AddItemFragment newInstance() {
+        AddItemFragment fragment = new AddItemFragment();
 //        Bundle args = new Bundle();
 //          here we can add parameters and retrieve them from
 //                      @Override
