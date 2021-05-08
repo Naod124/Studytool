@@ -1,14 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".View.AddItemsFragment">
+    android:orientation="vertical"
+    tools:context=".View.AddItemFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:text="Add Items"
+        android:textSize="40sp"
+        android:textStyle="bold" />
 
-</FrameLayout>
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/additems_item_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="15dp"
+        android:hint="Section"
+        android:inputType="text" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/additems_item_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="15dp"
+        android:hint="Item name"
+        android:inputType="text" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/additems_item_quantity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="15dp"
+        android:hint="Quantity"
+        android:inputType="number" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/additems_item_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="15dp"
+        android:hint="Price each"
+        android:inputType="numberDecimal" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/additems_item_url"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="15dp"
+        android:hint="Image URL"
+        android:inputType="textUri" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/additems_item_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="15dp"
+        android:hint="Description"
+        android:inputType="textMultiLine"
+        android:lines="8"
+        android:maxLines="13"
+        android:minLines="3"
+        android:scrollbars="vertical" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/additems_button_add"
+        android:layout_width="130dp"
+        android:layout_height="55dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="55dp"
+        android:text="Add item"
+        android:textStyle="bold"/>
+
+</LinearLayout>
