@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="5dp"
+    android:layout_height="4dp">
+
+</LinearLayout><!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <!--    xmlns:tools="http://schemas.android.com/tools"-->
+    <!--    android:layout_width="match_parent"-->
+    <!--    android:layout_height="match_parent"-->
+    <!--    android:layout_marginLeft="16dp"-->
+    <!--    android:layout_marginRight="16dp"-->
+    <!--    android:orientation="vertical"-->
+    <!--    tools:context=".View.SearchItemFragment">-->
+
+    <!--    <EditText-->
+    <!--        android:id="@+id/search_section"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="10dp"-->
+    <!--        android:hint="Section" />-->
+
+    <!--    <EditText-->
+    <!--        android:id="@+id/search_name"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="10dp"-->
+    <!--        android:hint="Item Name" />-->
+
+    <!--    <com.google.android.material.button.MaterialButton-->
+    <!--        android:id="@+id/search_button_search"-->
+    <!--        android:layout_width="100dp"-->
+    <!--        android:layout_height="40dp"-->
+    <!--        android:layout_gravity="right"-->
+    <!--        android:text="Search" />-->
+
+    <!--    <androidx.recyclerview.widget.RecyclerView-->
+    <!--        android:id="@+id/list"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:orientation="vertical"-->
+    <!--        app:layoutManager="LinearLayoutManager"-->
+    <!--        tools:listitem="@layout/fragment_item">-->
+
+
+    <!--    </androidx.recyclerview.widget.RecyclerView>-->
+
+    <!--</LinearLayout>-->
