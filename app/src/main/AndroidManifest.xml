@@ -66,8 +66,10 @@
         <activity android:name=".View.loginActivity" />
 
         <activity android:name=".View.MenuActivity" />
+        <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat"/>
 
-		<activity android:name=".View.RegisterActivity" />
+        <activity android:name=".View.RegisterActivity" />
 		<activity android:name=".View.StartQuizActivity" />
 		<activity android:name=".View.QuizActivity" />
 

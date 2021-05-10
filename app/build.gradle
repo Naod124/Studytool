@@ -109,4 +109,5 @@ dependencies {
 
     //Crop image library
     implementation 'com.theartofdev.edmodo:android-image-cropper:2.8.+'
+
 }
