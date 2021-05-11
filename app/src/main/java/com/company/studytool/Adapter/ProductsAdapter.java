@@ -1,5 +1,6 @@
 package com.company.studytool.Adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -47,6 +48,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.MyView
             public void onClick(View v) {
                 Intent intent = new Intent(context, ViewProductActivity.class);
                 intent.putExtra("product", product);
+               //getApplicationContext().startActivity(intent);
                 context.startActivity(intent);
             }
         });

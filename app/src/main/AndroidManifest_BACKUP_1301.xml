@@ -5,7 +5,12 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+<<<<<<< HEAD
     <uses-permission android:name="android.permission.CALL_PHONE"/>
+=======
+    <uses-permission android:name="android.permission.CALL_PHONE"></uses-permission>
+>>>>>>> cf036dd3e47945c7afb00a5af5e3f0e80670e798
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/newicone_launcher_round"
@@ -14,7 +19,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Studytool">
 
+<<<<<<< HEAD
+=======
+        <activity
+            android:name=".View.MyToDoListActivity"
+            android:launchMode="singleTop" />
         <activity android:name=".View.ViewProductActivity"/>
+
+>>>>>>> cf036dd3e47945c7afb00a5af5e3f0e80670e798
 
         <activity
             android:name=".View.AddEditNodeActivity" />
@@ -33,6 +45,8 @@
         <activity android:name=".View.StudentListActivity" />
         <activity android:name=".View.ForgotPasswordActivity" />
         <activity android:name=".View.TruthTableActivity" />
+
+        <activity android:name=".View.ViewProductActivity"/>
         <activity android:name=".View.DigitalVideoActivity" />
 
         <activity android:name=".View.SelectedCourseActivity" />
