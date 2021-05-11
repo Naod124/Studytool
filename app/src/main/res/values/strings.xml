@@ -89,4 +89,5 @@
     <string name="share_to_facebook">Share To FaceBook</string>
     <string name="email_support">Email_support</string>
     <string name="project_manager">Project Manager</string>
+    <string name="log_out">Log Out</string>
 </resources>

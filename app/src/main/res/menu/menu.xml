@@ -19,11 +19,11 @@
                     android:title="@string/my_notes" />
                 <item
                     android:id="@+id/buy_sell"
-                    android:icon="@drawable/ic_my_note"
+                    android:icon="@drawable/ic_sell"
                     android:title="@string/buy_sell_materials" />
                 <item
-                    android:id="@+id/project_manager"
-                    android:icon="@drawable/ic_my_note"
+                    android:id="@+id/projectManager"
+                    android:icon="@drawable/ic_project_manager"
                     android:title="@string/project_manager" />
             </menu>
         </item>
@@ -39,6 +39,10 @@
                 android:id="@+id/mail"
                 android:icon="@drawable/ic_email"
                 android:title="@string/email_support" />
+            <item
+                android:id="@+id/log_out"
+                android:icon="@drawable/ic_logout"
+                android:title="@string/log_out" />
         </menu>
     </item>
 </menu>

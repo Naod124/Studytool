@@ -5,6 +5,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
 
     <application
         android:allowBackup="true"
@@ -14,13 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Studytool">
 
-        <activity
-            android:name=".View.MyToDoListActivity"
-            android:launchMode="singleTop" />
 
         <activity
-            android:name=".View.AddEditNodeActivity"
-            android:parentActivityName=".View.MyToDoListActivity" />
+            android:name=".View.AddEditNodeActivity" />
 
         <activity android:name=".View.privateMessageActivity" />
 
