@@ -8,6 +8,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -37,37 +38,40 @@ public class MenuActivity extends AppCompatActivity {
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
+        getSupportActionBar().setTitle("Courses");
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @SuppressLint("NonConstantResourceId")
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.courses:
-                        getSupportFragmentManager().beginTransaction().
-                                replace(R.id.fragmentsHolder, new CourseFragment()).commit();
-                        break;
-                    case R.id.private_chat:
-                        getSupportFragmentManager().beginTransaction().
-                                replace(R.id.fragmentsHolder, new student_list()).commit();
-                        break;
-                    case R.id.my_notes:
-                        getSupportFragmentManager().beginTransaction().
-                                replace(R.id.fragmentsHolder, new ToDolistFragment()).commit();
-                        break;
-                    case R.id.share_to_facebook:
-                        getSupportFragmentManager().beginTransaction().
-                                replace(R.id.fragmentsHolder, new Facebook()).commit();
-                        break;
-                    case R.id.buy_sell:
-                        getSupportFragmentManager().beginTransaction().
-                                replace(R.id.fragmentsHolder, new BuySellFragment()).commit();
-                        break;
-                    case R.id.project_manager:
-                        getSupportFragmentManager().beginTransaction().
-                                replace(R.id.fragmentsHolder, new ProjectManagerFragment()).commit();
-                        break;
-                    case R.id.mail:
-                        break;
+
+                int itemId = item.getItemId();
+                if (itemId == R.id.courses) {
+                    getSupportActionBar().setTitle("Courses");
+                    getSupportFragmentManager().beginTransaction().
+                            replace(R.id.fragmentsHolder, new CourseFragment()).commit();
+                } else if (itemId == R.id.private_chat) {
+                    getSupportActionBar().setTitle("Private Chat");
+                    getSupportFragmentManager().beginTransaction().
+                            replace(R.id.fragmentsHolder, new student_list()).commit();
+                } else if (itemId == R.id.my_notes) {
+                    getSupportFragmentManager().beginTransaction().
+                            replace(R.id.fragmentsHolder, new ToDolistFragment()).commit();
+                } else if (itemId == R.id.share_to_facebook) {
+                    getSupportActionBar().setTitle("Share to facebook");
+                    getSupportFragmentManager().beginTransaction().
+                            replace(R.id.fragmentsHolder, new Facebook()).commit();
+                } else if (itemId == R.id.buy_sell) {
+                    getSupportActionBar().setTitle("Buy&&Sell");
+                    getSupportFragmentManager().beginTransaction().
+                            replace(R.id.fragmentsHolder, new BuySellFragment()).commit();
+                } else if (itemId == R.id.projectManager) {
+                    getSupportActionBar().setTitle("Project Manager");
+                    getSupportFragmentManager().beginTransaction().
+                            replace(R.id.fragmentsHolder, new ProjectManagerFragment()).commit();
+                } else if (itemId == R.id.mail) {
+                    getSupportActionBar().setTitle("Contact Support");
+                } else if (itemId == R.id.log_out) {
+                    startActivity(new Intent(MenuActivity.this, loginActivity.class));
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;

@@ -36,7 +36,7 @@ public class MyToDoListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_to_do_list);
+       // setContentView(R.layout.activity_my_to_do_list);
         FloatingActionButton actionButton = findViewById(R.id.add_note);
         actionButton.setOnClickListener(new View.OnClickListener() {
             @Override
