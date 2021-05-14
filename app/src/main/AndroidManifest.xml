@@ -23,7 +23,7 @@
 
         <activity
             android:name=".View.AddEditNodeActivity"
-            android:parentActivityName=".View.MyToDoListActivity" />
+            android:parentActivityName=".View.AddEditNodeActivity" />
 
         <activity android:name=".View.privateMessageActivity" />
 

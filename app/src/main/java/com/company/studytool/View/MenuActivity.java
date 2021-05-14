@@ -52,7 +52,7 @@ public class MenuActivity extends AppCompatActivity {
                         break;
                     case R.id.my_notes:
                         getSupportFragmentManager().beginTransaction().
-                                replace(R.id.fragmentsHolder, new ToDolist()).commit();
+                                replace(R.id.fragmentsHolder, new ToDolistFragment()).commit();
                         break;
                     case R.id.share_to_facebook:
                         getSupportFragmentManager().beginTransaction().

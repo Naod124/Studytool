@@ -32,10 +32,10 @@ import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link ToDolist#newInstance} factory method to
+ * Use the {@link ToDolistFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ToDolist extends Fragment {
+public class ToDolistFragment extends Fragment {
     private ToDoListViewModel nodeViewModel;
     private Toolbar toolbar;
     public static final int ADD_NOTE_CODE = 1;
@@ -49,7 +49,7 @@ public class ToDolist extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public ToDolist() {
+    public ToDolistFragment() {
         // Required empty public constructor
     }
 
@@ -62,8 +62,8 @@ public class ToDolist extends Fragment {
      * @return A new instance of fragment ToDolist.
      */
     // TODO: Rename and change types and number of parameters
-    public static ToDolist newInstance(String param1, String param2) {
-        ToDolist fragment = new ToDolist();
+    public static ToDolistFragment newInstance(String param1, String param2) {
+        ToDolistFragment fragment = new ToDolistFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -93,6 +93,12 @@ public class ToDolist extends Fragment {
                 Intent intent = new Intent(getActivity(), AddEditNodeActivity.class);
                // startActivity(new Intent(getActivity(), AddEditNodeActivity.class));
                 startActivityForResult(intent, ADD_NOTE_CODE);
+  /*              getActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragmentsHolder, new AddEditNodeFragment())
+                        .commit();
+*/
+
             }
         });
 
@@ -104,8 +110,8 @@ public class ToDolist extends Fragment {
         recyclerView.setHasFixedSize(true);
         final ToDoListViewAdapter adapter = new ToDoListViewAdapter();
         recyclerView.setAdapter(adapter);
-        nodeViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(Objects.requireNonNull(this.getActivity()).getApplication())).get(ToDoListViewModel.class);
-        nodeViewModel.getListLiveData().observe(this, new Observer<List<ToDoList>>() {
+        nodeViewModel = new ViewModelProvider(getActivity(), ViewModelProvider.AndroidViewModelFactory.getInstance(Objects.requireNonNull(getActivity()).getApplication())).get(ToDoListViewModel.class);
+        nodeViewModel.getListLiveData().observe(getActivity(), new Observer<List<ToDoList>>() {
             @Override
             public void onChanged(List<ToDoList> toDoLists) {
                 adapter.submitList(toDoLists);

@@ -76,11 +76,11 @@ public class MyToDoListActivity extends AppCompatActivity {
         adapter.setOnItemClickListener(new ToDoListViewAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(ToDoList toDoList) {
-                Intent intent = new Intent(MyToDoListActivity.this, AddEditNodeActivity.class);
-                intent.putExtra(AddEditNodeActivity.Extra_ID, toDoList.getId());
-                intent.putExtra(AddEditNodeActivity.Extra_Title, toDoList.getTitle());
-                intent.putExtra(AddEditNodeActivity.Extra_Description, toDoList.getDescription());
-                intent.putExtra(AddEditNodeActivity.Extra_Priority, toDoList.getPriority());
+                Intent intent = new Intent(MyToDoListActivity.this, AddEditNodeFragment.class);
+                intent.putExtra(AddEditNodeFragment.Extra_ID, toDoList.getId());
+                intent.putExtra(AddEditNodeFragment.Extra_Title, toDoList.getTitle());
+                intent.putExtra(AddEditNodeFragment.Extra_Description, toDoList.getDescription());
+                intent.putExtra(AddEditNodeFragment.Extra_Priority, toDoList.getPriority());
                 startActivityForResult(intent, Edit_NOTE_CODE);
             }
         });
@@ -90,9 +90,9 @@ public class MyToDoListActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == ADD_NOTE_CODE && resultCode == RESULT_OK) {
-            String title = data.getStringExtra(AddEditNodeActivity.Extra_Title);
-            String description = data.getStringExtra(AddEditNodeActivity.Extra_Description);
-            int priority = data.getIntExtra(AddEditNodeActivity.Extra_Priority, 1);
+            String title = data.getStringExtra(AddEditNodeFragment.Extra_Title);
+            String description = data.getStringExtra(AddEditNodeFragment.Extra_Description);
+            int priority = data.getIntExtra(AddEditNodeFragment.Extra_Priority, 1);
             ToDoList toDoList = new ToDoList(title, description, priority);
             nodeViewModel.insert(toDoList);
             Toast.makeText(this, "Note Saved", Toast.LENGTH_SHORT).show();
