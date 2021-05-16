@@ -17,18 +17,14 @@
         <activity android:name=".View.ViewProductActivity"/>
 
         <activity
-<<<<<<< HEAD
+
             android:name=".View.AddEditNodeActivity"
             android:parentActivityName=".View.AddEditNodeActivity" />
-=======
-            android:name=".View.AddEditNodeActivity" />
->>>>>>> 189fb1a4de42e39d3f18a8833d6a3a3c854efcc7
 
         <activity android:name=".View.privateMessageActivity" />
 
 
         <activity android:name=".View.VideoFullScreenActivity" />
-
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
