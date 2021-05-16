@@ -27,7 +27,6 @@ import static org.junit.Assert.*;
 @RunWith(AndroidJUnit4.class)
 public class LogInTest {
     @Rule
-
     public ActivityTestRule<loginActivity> loginActivityActivityTestRule = new ActivityTestRule<loginActivity>(loginActivity.class);
     private loginActivity activity = null;
 

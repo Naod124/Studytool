@@ -129,7 +129,7 @@ public class ContactUsFragment extends Fragment {
 
     private void alertDialog(String message) throws FileNotFoundException {
         AlertDialog alertDialog = new AlertDialog.Builder(Objects.requireNonNull(getActivity()))
-                .setMessage(message).setTitle("Thanks for your feedback").setNeutralButton("done", new DialogInterface.OnClickListener() {
+                .setMessage(message).setTitle("Thanks for your feedback").setNeutralButton("Done", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Toast.makeText(getContext(), "You are great", Toast.LENGTH_LONG).show();

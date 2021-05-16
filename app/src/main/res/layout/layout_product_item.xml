@@ -7,12 +7,14 @@
     app:cardBackgroundColor="@android:color/white"
     app:cardCornerRadius="10dp"
     app:cardElevation="1dp"
-    android:layout_margin="10dp">
+    android:layout_margin="10dp"
+    android:background="@color/hkrGreen">
 
     <LinearLayout android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="10dp">
+        android:padding="10dp"
+        android:background="@color/hkrGreen">
 
         <ImageView
             android:id="@+id/ivImg"
