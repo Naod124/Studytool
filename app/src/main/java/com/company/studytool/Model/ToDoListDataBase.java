@@ -30,7 +30,4 @@ public abstract class ToDoListDataBase extends RoomDatabase {
 
         }
     };
-    private void initializeDb (){
-
-    }
 }

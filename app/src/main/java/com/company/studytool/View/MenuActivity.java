@@ -54,6 +54,7 @@ public class MenuActivity extends AppCompatActivity {
                     getSupportFragmentManager().beginTransaction().
                             replace(R.id.fragmentsHolder, new student_list()).commit();
                 } else if (itemId == R.id.my_notes) {
+                    getSupportActionBar().setTitle("My Notes");
                     getSupportFragmentManager().beginTransaction().
                             replace(R.id.fragmentsHolder, new ToDolistFragment()).commit();
                 } else if (itemId == R.id.share_to_facebook) {
@@ -64,14 +65,10 @@ public class MenuActivity extends AppCompatActivity {
                     getSupportActionBar().setTitle("Buy&&Sell");
                     getSupportFragmentManager().beginTransaction().
                             replace(R.id.fragmentsHolder, new BuySellFragment()).commit();
-                } else if (itemId == R.id.projectManager) {
-                    getSupportActionBar().setTitle("Project Manager");
-                    getSupportFragmentManager().beginTransaction().
-                            replace(R.id.fragmentsHolder, new ProjectManagerFragment()).commit();
-                } else if (itemId == R.id.mail) {
+                } else if (itemId == R.id.contact_us) {
                     getSupportActionBar().setTitle("Contact Support");
-                } else if (itemId == R.id.log_out) {
-                    startActivity(new Intent(MenuActivity.this, loginActivity.class));
+                    getSupportFragmentManager().beginTransaction().
+                            replace(R.id.fragmentsHolder, new ContactUsFragment()).commit();
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;

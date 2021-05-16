@@ -17,7 +17,8 @@
             android:id="@+id/toolbar_main"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp" />
+            android:layout_marginBottom="20dp"
+            app:menu="@menu/main_menu_notes"/>
     </LinearLayout>
 
     <LinearLayout
